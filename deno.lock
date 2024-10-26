@@ -95,10 +95,6 @@
       ]
     }
   },
-  "remote": {
-    "https://esm.sh/@open-wc/dedupe-mixin@1.4.0": "4f377daf7e46151970baac68c34cc31412c65e25b3d2b0530644238b86675fed",
-    "https://esm.sh/v135/@open-wc/dedupe-mixin@1.4.0/denonext/dedupe-mixin.mjs": "6414dac76fb62beebe41cfea7de4993acd97283a375e33d4f00130d5915e47bb"
-  },
   "workspace": {
     "dependencies": [
       "jsr:@deno/emit@0.45",
