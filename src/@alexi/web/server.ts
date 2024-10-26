@@ -30,7 +30,7 @@ export async function run() {
 
         if (filePath.endsWith('.ts')) {
           const result = await build({
-            plugins: [httpImports({ disableCache: true })],
+            plugins: [httpImports({ disableCache: true, sideEffects: false })],
             entryPoints: [
               filePath,
             ],
