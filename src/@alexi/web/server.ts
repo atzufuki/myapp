@@ -1,6 +1,6 @@
 import { managers } from '@alexi/apps/registry';
 import { build } from 'esbuild';
-import { httpImports } from 'esbuild_serve/features/http_imports';
+// import { httpImports } from 'esbuild_serve/features/http_imports';
 
 const clients = new Set<WebSocket>();
 
@@ -30,11 +30,13 @@ export async function run() {
 
         if (filePath.endsWith('.ts')) {
           const result = await build({
-            plugins: [httpImports({ disableCache: true, sideEffects: false })],
+            plugins: [
+              //httpImports({ disableCache: true, sideEffects: false })
+            ],
             entryPoints: [
               filePath,
             ],
-            bundle: true,
+            bundle: false,
             write: false,
             format: 'esm',
             platform: 'browser',
