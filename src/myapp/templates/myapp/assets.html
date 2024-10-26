@@ -31,6 +31,14 @@
   <body>
     <myapp-assets user="{{ user }}" assets="{{ assets }}"></myapp-assets>
 
+    <script type="importmap">
+      {
+        "imports": {
+          "@open-wc/dedupe-mixin": "https://esm.sh/@open-wc/dedupe-mixin@1.4.0"
+        }
+      }
+    </script>
+
     <script type="module" src="/static/myapp/static/myapp/assets.ts"></script>
 
     {% if hmr %}
