@@ -47,7 +47,7 @@ export async function run() {
           const result = await bundle(
             filePath,
             {
-              importMap: './site_import_map.json',
+              importMap: './deno.json',
             },
           );
 

@@ -31,15 +31,15 @@
   "imports": {
     "@alexi/": "./src/@alexi/",
     "@deno/emit": "jsr:@deno/emit@^0.45.0",
-    "@open-wc/dedupe-mixin": "https://esm.sh/@open-wc/dedupe-mixin@1.4.0",
     "@std/assert": "jsr:@std/assert@1",
     "@std/fs": "jsr:@std/fs@^1.0.5",
     "@std/io": "jsr:@std/io@^0.225.0",
     "@std/path": "jsr:@std/path@^1.0.7",
-    "idb": "https://esm.sh/idb@8.0.0",
     "myapp/": "./src/myapp/",
     "nunjucks": "npm:nunjucks@^3.2.4",
-    "project/": "./project/"
+    "project/": "./project/",
+    "@open-wc/dedupe-mixin": "https://esm.sh/@open-wc/dedupe-mixin@1.4.0",
+    "idb": "https://esm.sh/idb@8.0.0"
   },
   "fmt": {
     "useTabs": false,
