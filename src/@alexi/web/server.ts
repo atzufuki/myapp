@@ -1,5 +1,5 @@
 import { managers } from '@alexi/apps/registry';
-import { bundle } from 'https://deno.land/x/emit@0.40.0/mod.ts';
+import { bundle } from 'jsr:@deno/emit';
 
 const clients = new Set<WebSocket>();
 
@@ -46,7 +46,9 @@ export async function run() {
 
           const result = await bundle(
             filePath,
-            {},
+            {
+              importMap: './site_import_map.json',
+            },
           );
 
           return new Response(result.code, {
