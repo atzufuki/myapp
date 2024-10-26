@@ -1,3 +1,4 @@
+import '@open-wc/dedupe-mixin';
 import { setupManagers } from '@alexi/apps/setup';
 import { execute } from '@alexi/management/execute';
 import { AlexiWebManager } from '@alexi/web/app/manager';
