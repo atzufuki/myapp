@@ -23,6 +23,9 @@ jobs:
         with:
           deno-version: v2.x
 
+      - name: Build step
+        run: "deno lint --rules-exclude='no-explicit-any','require-await','no-unused-vars' --fix"
+
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
         with:
