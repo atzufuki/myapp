@@ -30,7 +30,7 @@ export async function run() {
 
         if (filePath.endsWith('.ts')) {
           const result = await build({
-            plugins: [httpImports()],
+            plugins: [httpImports({ disableCache: true })],
             entryPoints: [
               filePath,
             ],
@@ -38,7 +38,6 @@ export async function run() {
             write: false,
             format: 'esm',
             platform: 'browser',
-            outdir: '/dev/null', // Use an in-memory directory
           });
 
           const transpiledCode = result.outputFiles[0].text;
