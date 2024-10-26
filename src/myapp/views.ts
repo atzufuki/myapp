@@ -6,6 +6,7 @@ export class CounterView extends TemplateView {
   async get(request: Request) {
     const context = await super.get(request);
 
+    context['hmr'] = Deno.env.get('HMR') === 'true';
     context['page'] = { title: 'Counter' };
     context['user'] = JSON.stringify({ displayName: 'John Doe' });
 
