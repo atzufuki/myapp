@@ -2,6 +2,7 @@ import { AlexiHTMLElement } from './htmlelement';
 import * as builtin from './builtin_elements';
 
 declare global {
+  // deno-lint-ignore no-var
   var html: {
     HTMLElement: typeof AlexiHTMLElement;
     Anchor: typeof builtin.Anchor;
