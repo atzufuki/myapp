@@ -38,6 +38,7 @@ export async function run() {
             write: false,
             format: 'esm',
             platform: 'browser',
+            outdir: '/dev/null', // Use an in-memory directory
           });
 
           const transpiledCode = result.outputFiles[0].text;
