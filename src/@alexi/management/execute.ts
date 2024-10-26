@@ -1,7 +1,8 @@
 import { managers } from '@alexi/apps/registry';
 
 export async function execute() {
-  const command = Deno.args[0];
+  const mode = Deno.env.get('MODE');
+  const command = mode === 'development' ? Deno.args[0] : 'runserver';
   const subcommand = Deno.args[1];
 
   if (command) {
