@@ -1,4 +1,4 @@
-import { setupManagers } from '@alexi/apps/setup';
+import { setupManagers } from '@alexi/apps/setup.ts';
 import { execute } from '@alexi/management/execute';
 import { AlexiWebManager } from '@alexi/web/app/manager';
 import { MyManager } from 'myapp/app/manager';
