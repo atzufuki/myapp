@@ -5,7 +5,6 @@
       "tags": ["recommended"],
       "exclude": [
         "no-explicit-any",
-        "no-sloppy-imports",
         "require-await",
         "no-unused-vars"
       ]

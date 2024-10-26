@@ -1,6 +1,5 @@
 import { managers } from '@alexi/apps/registry';
-import { build } from 'esbuild';
-// import { httpImports } from 'esbuild_serve/features/http_imports';
+import { bundle } from 'https://deno.land/x/emit@0.40.0/mod.ts';
 
 const clients = new Set<WebSocket>();
 
@@ -26,24 +25,31 @@ export async function run() {
 
       // Serve static ts files
       if (pathname.startsWith('/static/')) {
-        const filePath = `.${pathname.replace('/static/', '/src/')}`;
+        // const filePath = `.${pathname.replace('/static/', '/src/')}`;
+        const filePath = `${pathname.replace('/static/', './src/')}`;
 
         if (filePath.endsWith('.ts')) {
-          const result = await build({
-            plugins: [
-              //httpImports({ disableCache: true, sideEffects: false })
-            ],
-            entryPoints: [
-              filePath,
-            ],
-            bundle: false,
-            write: false,
-            format: 'esm',
-            platform: 'browser',
-          });
+          // const result = await build({
+          //   plugins: [
+          //     httpImports({ disableCache: true, sideEffects: false })
+          //   ],
+          //   entryPoints: [
+          //     filePath,
+          //   ],
+          //   bundle: false,
+          //   write: false,
+          //   format: 'esm',
+          //   platform: 'browser',
+          // });
 
-          const transpiledCode = result.outputFiles[0].text;
-          return new Response(transpiledCode, {
+          // const transpiledCode = result.outputFiles[0].text;
+
+          const result = await bundle(
+            filePath,
+            {},
+          );
+
+          return new Response(result.code, {
             headers: { 'Content-Type': 'application/javascript' },
           });
         }
