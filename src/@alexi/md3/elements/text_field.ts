@@ -90,6 +90,7 @@ export class TextField extends ThemedElementMixin(
 
     // Set the background color of the label container to the background color of the closest
     // parent element with background color.
+    // deno-lint-ignore no-this-alias
     let element: HTMLElement = this;
     while (element) {
       if (element.style.backgroundColor) {
