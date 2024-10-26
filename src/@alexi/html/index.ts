@@ -1,5 +1,5 @@
-import { AlexiHTMLElement } from './htmlelement';
-import * as builtin from './builtin_elements';
+import { AlexiHTMLElement } from './htmlelement.ts';
+import * as builtin from './builtin_elements/index.ts';
 
 declare global {
   // deno-lint-ignore no-var
@@ -87,5 +87,5 @@ globalThis.html = {
 };
 
 export { AlexiHTMLElement as HTMLElement };
-export * from './builtin_elements';
-export * from './utility_types';
+export * from './builtin_elements/index.ts';
+export * from './utility_types.ts';

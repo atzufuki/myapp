@@ -1,6 +1,6 @@
-import './setup';
-import * as html from '@alexi/html';
-import * as md from '@alexi/md3';
+import './setup.ts';
+import * as html from '@alexi/html/index.ts';
+import * as md from '@alexi/md3/index.ts';
 
 class Counter extends md.ThemedElementMixin(
   html.HTMLElement,

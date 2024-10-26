@@ -1,5 +1,5 @@
-import { merge } from '../merge';
-import { IncomingProps, RenderObject } from '../utility_types';
+import { merge } from '../merge.ts';
+import { IncomingProps, RenderObject } from '../utility_types.ts';
 
 export type HRProps<T = unknown> = IncomingProps<HTMLHRElement, T>;
 

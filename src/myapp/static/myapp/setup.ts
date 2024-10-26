@@ -1,5 +1,5 @@
-import * as html from '@alexi/html';
-import * as md from '@alexi/md3';
+import * as html from '@alexi/html/index.ts';
+import * as md from '@alexi/md3/index.ts';
 
 html.Form.define('html-form');
 html.UList.define('html-ul');
