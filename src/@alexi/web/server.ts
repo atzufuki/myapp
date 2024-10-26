@@ -27,6 +27,7 @@ export async function run() {
       if (pathname.startsWith('/static/')) {
         // const filePath = `.${pathname.replace('/static/', '/src/')}`;
         const filePath = `${pathname.replace('/static/', './src/')}`;
+        // const filePath = `${pathname.replace('/static/', '../../../src/')}`;
 
         if (filePath.endsWith('.ts')) {
           // const result = await build({
@@ -44,14 +45,25 @@ export async function run() {
 
           // const transpiledCode = result.outputFiles[0].text;
 
+          // const url = new URL(filePath, import.meta.url);
+          // const result = await transpile(
+          //   url,
+          //   {
+          //     importMap: './deno.json',
+          //   },
+          // );
+          // const code = result.get(url.href);
+
           const result = await bundle(
             filePath,
             {
               importMap: './deno.json',
+              allowRemote: true,
             },
           );
+          const code = result.code;
 
-          return new Response(result.code, {
+          return new Response(code, {
             headers: { 'Content-Type': 'application/javascript' },
           });
         }
