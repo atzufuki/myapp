@@ -1,4 +1,4 @@
-import { AbstractCard } from './_abstract';
+import { AbstractCard } from './_abstract.ts';
 
 export class OutlinedCard extends AbstractCard {
   update() {

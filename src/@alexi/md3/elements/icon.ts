@@ -1,6 +1,6 @@
-import { IconName } from './icon_names';
-import * as html from '@alexi/html';
-import { ThemedElementMixin } from '../theme';
+import { IconName } from './icon_names.ts';
+import * as html from '@alexi/html/index.ts';
+import { ThemedElementMixin } from '../theme.ts';
 
 export class Icon extends ThemedElementMixin(
   html.Span<{

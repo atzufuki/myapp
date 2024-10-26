@@ -1,3 +1,3 @@
-export * from './filled';
-export * from './standard';
-export * from './tonal';
+export * from './filled.ts';
+export * from './standard.ts';
+export * from './tonal.ts';

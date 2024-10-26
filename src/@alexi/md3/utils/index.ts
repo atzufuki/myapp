@@ -1,4 +1,4 @@
-import * as md from '../elements';
+import * as md from '../elements/index.ts';
 
 export function showDialog(context: any, builder: (context: any) => any) {
   const dialog = builder(context);

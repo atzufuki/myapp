@@ -1,4 +1,4 @@
-import { AbstractIconButton } from './_abstract';
+import { AbstractIconButton } from './_abstract.ts';
 
 export class StandardIconButton extends AbstractIconButton {
   update() {

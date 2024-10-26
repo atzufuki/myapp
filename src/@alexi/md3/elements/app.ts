@@ -1,5 +1,5 @@
-import * as html from '@alexi/html';
-import { ThemedElementMixin } from '../theme';
+import * as html from '@alexi/html/index.ts';
+import { ThemedElementMixin } from '../theme.ts';
 
 export class MaterialApp extends ThemedElementMixin(html.HTMLElement) {
   scheme = globalThis.matchMedia('(prefers-color-scheme: dark)');

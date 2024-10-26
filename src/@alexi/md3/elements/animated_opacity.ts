@@ -1,5 +1,5 @@
-import * as html from '@alexi/html';
-import { ThemedElementMixin } from '../theme';
+import * as html from '@alexi/html/index.ts';
+import { ThemedElementMixin } from '../theme.ts';
 
 export class AnimatedOpacity extends ThemedElementMixin(
   html.HTMLElement<{

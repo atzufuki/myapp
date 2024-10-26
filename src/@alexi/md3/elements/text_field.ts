@@ -1,6 +1,6 @@
-import * as md from '@alexi/md3';
-import * as html from '@alexi/html';
-import { ThemedElementMixin } from '../theme';
+import * as md from '../index.ts';
+import * as html from '@alexi/html/index.ts';
+import { ThemedElementMixin } from '../theme.ts';
 
 export class TextField extends ThemedElementMixin(
   html.HTMLElement<{

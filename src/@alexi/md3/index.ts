@@ -1,3 +1,3 @@
-export * from './theme';
-export * from './elements';
-export * from './utils';
+export * from './theme.ts';
+export * from './elements/index.ts';
+export * from './utils/index.ts';

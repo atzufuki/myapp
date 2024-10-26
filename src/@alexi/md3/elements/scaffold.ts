@@ -1,5 +1,5 @@
-import * as md from '@alexi/md3';
-import { ThemeData, ThemedElementMixin } from '../theme';
+import * as md from '../index.ts';
+import { ThemeData, ThemedElementMixin } from '../theme.ts';
 
 export class Scaffold extends ThemedElementMixin(
   html.HTMLElement<{

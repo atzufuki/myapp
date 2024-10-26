@@ -1,6 +1,6 @@
-import * as html from '@alexi/html';
-import * as md from '@alexi/md3';
-import { ThemedElementMixin } from '../theme';
+import * as html from '@alexi/html/index.ts';
+import * as md from '../index.ts';
+import { ThemedElementMixin } from '../theme.ts';
 
 export class Fab extends ThemedElementMixin(
   html.Button<{

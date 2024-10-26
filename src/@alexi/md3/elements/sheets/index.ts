@@ -1,1 +1,1 @@
-export * from './bottom_sheet';
+export * from './bottom_sheet.ts';

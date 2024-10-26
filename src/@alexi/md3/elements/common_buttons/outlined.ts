@@ -1,4 +1,4 @@
-import { AbstractButton } from './_abstract';
+import { AbstractButton } from './_abstract.ts';
 
 export class OutlinedButton extends AbstractButton {
   update() {

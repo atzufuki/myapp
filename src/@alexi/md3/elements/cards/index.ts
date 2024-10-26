@@ -1,2 +1,2 @@
-export * from './outlined';
-export * from './elevated';
+export * from './outlined.ts';
+export * from './elevated.ts';
