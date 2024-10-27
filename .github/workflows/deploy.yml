@@ -24,7 +24,9 @@ jobs:
           deno-version: v2.x
 
       - name: Build step
-        run: "deno lint --rules-exclude='no-explicit-any','require-await','no-unused-vars' --fix"
+        run: |
+          deno lint --rules-exclude='no-explicit-any','require-await','no-unused-vars' --fix
+          deno run --allow-env --allow-read --allow-write manage.ts collectstatic
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1

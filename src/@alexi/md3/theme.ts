@@ -1,4 +1,4 @@
-import { type Constructor, dedupeMixin } from '@alexi/utils/dedupeMixin.ts';
+import { type Constructor, dedupeMixin } from '@open-wc/dedupe-mixin';
 import themejson from './material-theme.json' with { type: 'json' };
 
 type Scheme = {

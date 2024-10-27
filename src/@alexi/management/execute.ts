@@ -2,7 +2,9 @@ import { managers } from '@alexi/apps/registry';
 
 export async function execute() {
   const mode = Deno.env.get('MODE');
-  const command = mode === 'development' ? Deno.args[0] : 'runserver';
+  const command = mode !== 'development' && !Deno.args[0]
+    ? 'runserver'
+    : Deno.args[0];
   const subcommand = Deno.args[1];
 
   if (command) {

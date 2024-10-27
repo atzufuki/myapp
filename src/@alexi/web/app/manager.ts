@@ -5,6 +5,7 @@ export class AlexiWebManager extends ManagerConfig {
   getCommands = async () => {
     return {
       runserver: await import(`../commands/runserver.ts`),
+      collectstatic: await import(`../commands/collectstatic.ts`),
     };
   };
 }

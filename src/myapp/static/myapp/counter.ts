@@ -103,4 +103,4 @@ class Counter extends md.ThemedElementMixin(
   }
 }
 
-customElements.define('myapp-counter', Counter);
+Counter.define('myapp-counter');

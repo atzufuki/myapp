@@ -1,10 +1,10 @@
 import { BaseCommand } from '@alexi/management/base';
-import { runserver } from '@alexi/web/server';
+import { collectstatic } from '@alexi/web/server';
 
 export class Command extends BaseCommand {
-  help = 'Starts a lightweight web server.';
+  help = 'Collects static files.';
 
   async handle() {
-    await runserver();
+    await collectstatic();
   }
 }

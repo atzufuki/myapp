@@ -111,4 +111,4 @@ class Assets extends md.ThemedElementMixin(
   }
 }
 
-customElements.define('myapp-assets', Assets);
+Assets.define('myapp-assets');
