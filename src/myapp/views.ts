@@ -1,4 +1,5 @@
-import { APIView, TemplateView } from '@alexi/web/views.ts';
+import { APIView, TemplateView } from '@alexi/web/views';
+import { AssetsMixin } from 'myapp/mixins';
 
 export class CounterView extends TemplateView {
   templateName = 'myapp/counter.html';
@@ -14,16 +15,8 @@ export class CounterView extends TemplateView {
   }
 }
 
-export class AssetsView extends TemplateView {
+export class AssetsView extends AssetsMixin(TemplateView) {
   templateName = 'myapp/assets.html';
-
-  assets = [
-    { id: 1, name: 'asset 1' },
-    {
-      id: 2,
-      name: 'asset 2',
-    },
-  ];
 
   async get(request: Request) {
     const context = await super.get(request);
@@ -37,13 +30,10 @@ export class AssetsView extends TemplateView {
   }
 
   async post(request: Request) {
-    const created = {
+    await this.create({
       id: this.assets.length + 1,
-      name: `asset ${this.assets.length + 1}`,
-    };
-    this.assets.push(
-      created,
-    );
+      name: `Asset ${this.assets.length + 1}`,
+    });
 
     const context = await super.get(request);
 
@@ -56,33 +46,19 @@ export class AssetsView extends TemplateView {
   }
 }
 
-export class AssetsAPIView extends APIView {
-  assets = [
-    { id: 1, name: 'asset 1' },
-    {
-      id: 2,
-      name: 'asset 2',
-    },
-  ];
-
+export class AssetsAPIView extends AssetsMixin(APIView) {
   async get(request: Request) {
     if (this.params.assetId) {
-      return this.assets.find((asset) =>
-        asset.id === parseInt(this.params.assetId)
-      );
+      return this.retrieve({ id: this.params.assetId });
     }
 
-    return this.assets;
+    return await this.list();
   }
 
   async post(request: Request) {
-    const created = {
+    return await this.create({
       id: this.assets.length + 1,
-      name: `asset ${this.assets.length + 1}`,
-    };
-    this.assets.push(
-      created,
-    );
-    return created;
+      name: `Asset ${this.assets.length + 1}`,
+    });
   }
 }

@@ -18,6 +18,12 @@ export class View {
       case 'POST':
         context = await this.post(request);
         break;
+      case 'PUT':
+        context = await this.put(request);
+        break;
+      case 'PATCH':
+        context = await this.patch(request);
+        break;
       default:
         throw new Error('Method not allowed');
     }
@@ -30,6 +36,14 @@ export class View {
   }
 
   async post(request: Request): Promise<object | null> {
+    return {};
+  }
+
+  async put(request: Request): Promise<object | null> {
+    return {};
+  }
+
+  async patch(request: Request): Promise<object | null> {
     return {};
   }
 
@@ -94,19 +108,30 @@ export class APIView extends View {
 
   async dispatch(request: Request) {
     this._parseParams(request);
-    let context: { [key: string]: any } = {};
+    return await super.dispatch(request);
+  }
 
-    switch (request.method) {
-      case 'GET':
-        context = await this.get(request);
-        break;
-      case 'POST':
-        context = await this.post(request);
-        break;
-      default:
-        throw new Error('Method not allowed');
-    }
+  async list(): Promise<any[]> {
+    throw new Error('Not implemented');
+  }
 
-    return await this.renderToResponse(context);
+  async create(obj: any): Promise<any> {
+    throw new Error('Not implemented');
+  }
+
+  async retrieve({ id }: any): Promise<any> {
+    throw new Error('Not implemented');
+  }
+
+  async update({ id }: any, obj: any): Promise<any> {
+    throw new Error('Not implemented');
+  }
+
+  async partialUpdate({ id }: any, obj: any): Promise<any> {
+    throw new Error('Not implemented');
+  }
+
+  async destroy({ id }: any): Promise<any> {
+    throw new Error('Not implemented');
   }
 }
