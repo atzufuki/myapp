@@ -57,17 +57,17 @@ class Counter extends md.ThemedElementMixin(
                 new md.Tab({
                   label: 'Counter',
                   onclick: async () => {
-                    this.progress.open();
-                    await this.progress.close();
-                    location.href = '/';
+                    setTimeout(() => {
+                      location.href = '/';
+                    }, 200);
                   },
                 }),
                 new md.Tab({
                   label: 'Assets',
                   onclick: async () => {
-                    this.progress.open();
-                    await this.progress.close();
-                    location.href = '/assets/';
+                    setTimeout(() => {
+                      location.href = '/assets/';
+                    }, 200);
                   },
                 }),
               ],
