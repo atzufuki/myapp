@@ -3,12 +3,31 @@ import { reverse } from '@alexi/web/urls.ts';
 
 export class View {
   declare urlName: string;
+  declare params: { [key: string]: string };
 
   static asView(options?: any) {
     return new this();
   }
 
   async dispatch(request: Request) {
+    const pattern = reverse(this.urlName);
+    const requestUrl = new URL(request.url);
+    const patternParts = pattern.path.split('/').filter((part) => part !== '');
+    const urlParts = requestUrl.pathname.split('/').filter((part) =>
+      part !== ''
+    );
+    const matchedParts = urlParts.slice(0, patternParts.length);
+    const path = matchedParts.join('/');
+    const paramNames = (pattern.path.match(/:\w+/g) || []).map((name) =>
+      name.slice(1)
+    );
+    const params = {};
+    for (const name of paramNames) {
+      const index = pattern.path.split('/').indexOf(`:${name}`);
+      params[name] = path.split('/')[index];
+    }
+    this.params = params;
+
     let context: { [key: string]: any } = {};
 
     switch (request.method) {
@@ -24,6 +43,9 @@ export class View {
       case 'PATCH':
         context = await this.patch(request);
         break;
+      case 'DELETE':
+        context = await this.delete(request);
+        break;
       default:
         throw new Error('Method not allowed');
     }
@@ -31,20 +53,28 @@ export class View {
     return await this.renderToResponse(context);
   }
 
-  async get(request: Request): Promise<object | null> {
+  async getContextData(request: Request) {
     return {};
+  }
+
+  async get(request: Request): Promise<object | null> {
+    return await this.getContextData(request);
   }
 
   async post(request: Request): Promise<object | null> {
-    return {};
+    return await this.getContextData(request);
   }
 
   async put(request: Request): Promise<object | null> {
-    return {};
+    return await this.getContextData(request);
   }
 
   async patch(request: Request): Promise<object | null> {
-    return {};
+    return await this.getContextData(request);
+  }
+
+  async delete(request: Request): Promise<object | null> {
+    return await this.getContextData(request);
   }
 
   async renderToResponse(
@@ -84,33 +114,6 @@ export class TemplateView extends View {
 }
 
 export class APIView extends View {
-  declare params: { [key: string]: string };
-
-  private _parseParams(request: Request) {
-    const pattern = reverse(this.urlName);
-    const requestUrl = new URL(request.url);
-    const patternParts = pattern.path.split('/').filter((part) => part !== '');
-    const urlParts = requestUrl.pathname.split('/').filter((part) =>
-      part !== ''
-    );
-    const matchedParts = urlParts.slice(0, patternParts.length);
-    const path = matchedParts.join('/');
-    const paramNames = (pattern.path.match(/:\w+/g) || []).map((name) =>
-      name.slice(1)
-    );
-    const params = {};
-    for (const name of paramNames) {
-      const index = pattern.path.split('/').indexOf(`:${name}`);
-      params[name] = path.split('/')[index];
-    }
-    this.params = params;
-  }
-
-  async dispatch(request: Request) {
-    this._parseParams(request);
-    return await super.dispatch(request);
-  }
-
   async list(): Promise<any[]> {
     throw new Error('Not implemented');
   }
