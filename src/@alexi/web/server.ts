@@ -69,7 +69,7 @@ export async function runserver() {
 
   if (dev) {
     // Watch for file changes and notify clients
-    const watcher = Deno.watchFs(SRC_ROOT);
+    const watcher = Deno.watchFs(STATICFILES_DIRS);
     for await (const event of watcher) {
       if (event.kind === 'modify') {
         if (!collecting) {
