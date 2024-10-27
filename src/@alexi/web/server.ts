@@ -106,7 +106,7 @@ async function transpileFile(
       srcPath,
       {
         importMap: './deno.json',
-        minify: true,
+        minify: !dev,
       },
     );
     const code = result.code;
