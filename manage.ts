@@ -19,7 +19,6 @@ async function main() {
   });
 
   await execute();
-  Deno.kill(Deno.pid);
 }
 
 main();
