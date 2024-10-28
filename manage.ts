@@ -19,6 +19,7 @@ async function main() {
   });
 
   await execute();
+  Deno.exit(0);
 }
 
 main();
