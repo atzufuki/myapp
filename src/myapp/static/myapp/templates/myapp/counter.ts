@@ -1,22 +1,15 @@
-import './setup.ts';
 import * as html from '@alexi/html/index.ts';
 import * as md from '@alexi/md3/index.ts';
+import { dispatch } from '@alexi/pwa/dispatcher.ts';
 
-class Counter extends md.ThemedElementMixin(
+export default class Counter extends md.ThemedElementMixin(
   html.HTMLElement,
 ) {
-  static observedAttributes = ['user'];
-
   theme = new md.ThemeData({});
   user = {
     displayName: '',
   };
   count = 0;
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue === newValue) return;
-    this[name] = JSON.parse(newValue);
-  }
 
   get progress() {
     return this.querySelector<md.LinearProgress>(md.LinearProgress.getName());
@@ -58,7 +51,8 @@ class Counter extends md.ThemedElementMixin(
                   label: 'Counter',
                   onclick: async () => {
                     setTimeout(() => {
-                      location.href = '/';
+                      // location.href = '/';
+                      dispatch('/', 'GET');
                     }, 200);
                   },
                 }),
@@ -66,7 +60,8 @@ class Counter extends md.ThemedElementMixin(
                   label: 'Assets',
                   onclick: async () => {
                     setTimeout(() => {
-                      location.href = '/assets/';
+                      // location.href = '/assets/';
+                      dispatch('/assets/', 'GET');
                     }, 200);
                   },
                 }),

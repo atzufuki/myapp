@@ -1,12 +1,10 @@
-import './setup.ts';
 import * as html from '@alexi/html/index.ts';
 import * as md from '@alexi/md3/index.ts';
+import { dispatch } from '@alexi/pwa/dispatcher.ts';
 
-class Assets extends md.ThemedElementMixin(
+export default class Assets extends md.ThemedElementMixin(
   html.HTMLElement,
 ) {
-  static observedAttributes = ['user', 'assets'];
-
   theme = new md.ThemeData({});
   user = {
     displayName: '',
@@ -15,11 +13,6 @@ class Assets extends md.ThemedElementMixin(
 
   get progress() {
     return this.querySelector<md.LinearProgress>(md.LinearProgress.getName());
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (oldValue === newValue) return;
-    this[name] = JSON.parse(newValue);
   }
 
   render() {
@@ -37,7 +30,7 @@ class Assets extends md.ThemedElementMixin(
           new md.Avatar({
             displayName: this.user.displayName,
             onclick: async () => {
-              location.href = '/auth/signin/';
+              // location.href = '/auth/signin/';
             },
           }),
         ],
@@ -58,7 +51,8 @@ class Assets extends md.ThemedElementMixin(
                   label: 'Counter',
                   onclick: async () => {
                     setTimeout(() => {
-                      location.href = '/';
+                      // location.href = '/';
+                      dispatch('/', 'GET');
                     }, 200);
                   },
                 }),
@@ -66,7 +60,8 @@ class Assets extends md.ThemedElementMixin(
                   label: 'Assets',
                   onclick: async () => {
                     setTimeout(() => {
-                      location.href = '/assets/';
+                      // location.href = '/assets/';
+                      dispatch('/assets/', 'GET');
                     }, 200);
                   },
                 }),
@@ -98,12 +93,12 @@ class Assets extends md.ThemedElementMixin(
             this.progress.open();
             await this.progress
               .close();
-            // send post to current location
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = '/assets/';
-            document.body.appendChild(form);
-            form.submit();
+            // const form = document.createElement('form');
+            // form.method = 'POST';
+            // form.action = '/assets/';
+            // document.body.appendChild(form);
+            // form.submit();
+            dispatch('/assets/', 'POST');
           },
         }),
       }),

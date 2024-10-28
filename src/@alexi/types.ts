@@ -1,11 +1,9 @@
-import { Model } from '@alexi/db/model';
-import { Manager } from '@alexi/db/manager';
-import { Field } from '@alexi/db/fields';
-import { QuerySet } from '@alexi/db/query';
-import { View } from '@alexi/web/views';
-import { BaseDatabaseBackend } from '@alexi/db/backends/base';
-import { AppConfig, ManagerConfig, ServiceConfig } from '@alexi/apps/config';
-import { Storage } from '@alexi/files/storage';
+import { Model } from '@alexi/db/model.ts';
+import { Manager } from '@alexi/db/manager.ts';
+import { Field } from '@alexi/db/fields.ts';
+import { QuerySet } from '@alexi/db/query.ts';
+import { BaseDatabaseBackend } from '@alexi/db/backends/base.ts';
+import { Storage } from '@alexi/files/storage.ts';
 
 type FieldValue<F> = F extends Field ? F['value'] : never;
 
@@ -67,6 +65,7 @@ export type ExecuteAction =
   | 'exists'
   | 'clear';
 
+type View = any;
 export type AsView = View;
 
 export type UrlPattern = {
@@ -78,7 +77,7 @@ export type UrlPattern = {
 type ResolvedReturnType<T> = T extends (...args: any[]) => Promise<infer R> ? R
   : any;
 
-export type Context<T extends View> = ResolvedReturnType<T['get']>;
+export type Context<T extends View> = ResolvedReturnType<any>;
 
 export type DATABASE = {
   NAME: string;
@@ -100,25 +99,11 @@ export type STORAGES = {
   [key: string]: STORAGE;
 };
 
-export type ManagerSettings = {
-  DATABASES: DATABASES;
-  STORAGES: STORAGES;
-  INSTALLED_MANAGERS: (typeof ManagerConfig)[];
-  [key: string]: any;
-};
-
-export type ServiceSettings = {
-  DATABASES: DATABASES;
-  STORAGES: STORAGES;
-  INSTALLED_SERVICES: (typeof ServiceConfig)[];
-  [key: string]: any;
-};
-
 export type AppSettings = {
   DATABASES: DATABASES;
   STORAGES: STORAGES;
   SPA_ENTRY: string;
-  INSTALLED_APPS: (typeof AppConfig)[];
+  INSTALLED_APPS: any[];
   APPEND_SLASH: boolean;
   ROOT_URLCONF: string;
   [key: string]: any;

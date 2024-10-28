@@ -1,4 +1,4 @@
-import { BaseDatabaseBackend } from '@alexi/db/backends/base';
+import { BaseDatabaseBackend } from '@alexi/db/backends/base.ts';
 
 export const settings: any = {};
 

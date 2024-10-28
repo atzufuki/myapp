@@ -1,8 +1,8 @@
-import { settings } from '@alexi/apps/conf';
-import { Storage } from '@alexi/files/storage';
-import { FieldOptions } from '@alexi/types';
-import { Model } from '@alexi/db/model';
-import { QuerySet } from '@alexi/db/query';
+import { settings } from '@alexi/conf/index.ts';
+import { Storage } from '@alexi/files/storage.ts';
+import { FieldOptions } from '@alexi/types.ts';
+import { Model } from '@alexi/db/model.ts';
+import { QuerySet } from '@alexi/db/query.ts';
 
 export class Field {
   primaryKey?: boolean;

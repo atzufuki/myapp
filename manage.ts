@@ -1,14 +1,14 @@
-import { setupManagers } from '@alexi/apps/setup';
+import { setup } from '@alexi/web/setup';
 import { execute } from '@alexi/management/execute';
-import { AlexiWebManager } from '@alexi/web/app/manager';
-import { MyManager } from 'myapp/app/manager';
+import { AlexiWebApp } from '@alexi/web/app';
+import { MyApp } from 'myapp/app';
 
 async function main() {
-  await setupManagers({
-    INSTALLED_MANAGERS: [
+  await setup({
+    INSTALLED_APPS: [
       //
-      MyManager,
-      AlexiWebManager,
+      MyApp,
+      AlexiWebApp,
     ],
     DATABASES: {
       default: {

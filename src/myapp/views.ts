@@ -1,22 +1,8 @@
 import { APIView, TemplateView } from '@alexi/web/views';
 import { AssetsMixin } from 'myapp/mixins';
 
-export class CounterView extends TemplateView {
-  templateName = 'myapp/counter.html';
-
-  async get(request: Request) {
-    const context = await super.get(request);
-
-    context['hmr'] = Deno.env.get('HMR') === 'true';
-    context['page'] = { title: 'Counter' };
-    context['user'] = JSON.stringify({ displayName: 'John Doe' });
-
-    return context;
-  }
-}
-
-export class AssetsView extends AssetsMixin(TemplateView) {
-  templateName = 'myapp/assets.html';
+export class MyAppView extends AssetsMixin(TemplateView) {
+  templateName = 'myapp/myapp.html';
 
   async getContextData(request: Request) {
     return {

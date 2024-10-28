@@ -9,11 +9,11 @@ import {
   OrderByParams,
   QuerySetClass,
   UpdateOrCreateParams,
-} from '@alexi/types';
-import { settings } from '@alexi/apps/conf';
+} from '@alexi/types.ts';
+import { settings } from '@alexi/conf/index.ts';
 
-import { Model } from '@alexi/db/model';
-import { QuerySet } from '@alexi/db/query';
+import { Model } from '@alexi/db/model.ts';
+import { QuerySet } from '@alexi/db/query.ts';
 
 export class Manager<T extends Model<T>> {
   objects: {

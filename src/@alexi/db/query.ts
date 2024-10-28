@@ -1,23 +1,23 @@
 import {
+  CreateParams,
+  DATABASE,
+  ExcludeParams,
+  FilterParams,
+  GetOrCreateParams,
+  GetOrCreateResponse,
+  GetParams,
+  ModelClass,
   ModelProps,
   OrderByParams,
-  ModelClass,
-  DATABASE,
   UpdateOrCreateParams,
-  UpdateParams,
-  FilterParams,
-  CreateParams,
-  ExcludeParams,
-  GetOrCreateParams,
-  GetParams,
   UpdateOrCreateResponse,
-  GetOrCreateResponse,
-} from '@alexi/types';
-import { Model } from '@alexi/db/model';
-import { Manager } from '@alexi/db/manager';
-import { Field } from '@alexi/db/fields';
-import { DoesNotExist } from '@alexi/db/errors';
-import { databases, settings } from '@alexi/apps/conf';
+  UpdateParams,
+} from '@alexi/types.ts';
+import { Model } from '@alexi/db/model.ts';
+import { Manager } from '@alexi/db/manager.ts';
+import { Field } from '@alexi/db/fields.ts';
+import { DoesNotExist } from '@alexi/db/errors.ts';
+import { databases, settings } from '@alexi/conf/index.ts';
 
 class Query<T extends Model<T>> {
   ordering: string[] = [];

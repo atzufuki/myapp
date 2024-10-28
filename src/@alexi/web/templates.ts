@@ -1,6 +1,6 @@
 import { existsSync } from '@std/fs';
 import nunjucks from 'npm:nunjucks';
-import { managers } from '@alexi/apps/registry';
+import { apps } from '@alexi/web/registry';
 
 export default class TemplateBackend {
   templatesDirname = 'templates';
@@ -9,10 +9,10 @@ export default class TemplateBackend {
     const root = Deno.cwd();
     const [templateDirName, fileName] = templateName.split('/');
 
-    for (const managerName in managers) {
+    for (const appName in apps) {
       const [name, extension] = fileName.split('.');
       const importPath =
-        `${root}/src/${managerName}/${this.templatesDirname}/${templateDirName}/${name}.${extension}`;
+        `${root}/src/${appName}/${this.templatesDirname}/${templateDirName}/${name}.${extension}`;
 
       if (!existsSync(importPath)) {
         continue;
@@ -24,10 +24,6 @@ export default class TemplateBackend {
           case 'html':
             const template = await Deno.readTextFile(importPath);
             return nunjucks.renderString(template, context);
-          case 'ts':
-            return await import(importPath);
-          case 'js':
-            return await import(importPath);
 
           default:
             throw new Error('Unsupported template extension.');

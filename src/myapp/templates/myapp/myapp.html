@@ -29,9 +29,20 @@
     </style>
   </head>
   <body>
-    <myapp-assets user="{{ user }}" assets="{{ assets }}"></myapp-assets>
+    <div id="root" style="display: contents"></div>
 
-    <script type="module" src="/static/myapp/assets.ts"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "$project/": "/static/static/",
+          "$myapp/": "/static/myapp/static/myapp/",
+          "@alexi/": "/static/@alexi/",
+          "@open-wc/dedupe-mixin": "https://esm.sh/@open-wc/dedupe-mixin@1.4.0",
+          "idb": "https://esm.sh/idb@8.0.0"
+        }
+      }
+    </script>
+    <script type="module" src="/static/myapp/static/myapp/index.ts"></script>
 
     {% if hmr %}
     <!-- enable hot module replacement -->

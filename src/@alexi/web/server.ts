@@ -1,12 +1,15 @@
-import { bundle } from 'jsr:@deno/emit';
-import { managers } from '@alexi/apps/registry';
+import { apps } from '@alexi/web/registry';
+import { build } from 'https://deno.land/x/esbuild@v0.24.0/mod.js';
+import { httpImports } from 'https://deno.land/x/esbuild_serve@1.4.1/features/httpImports.ts';
 
 const STATIC_ROOT = './static';
-const SRC_ROOT = 'src';
-const STATICFILES_DIRS = ['./project/static', './src/myapp/static'];
+const STATICFILES_DIRS = [
+  './project',
+  './src',
+];
 const dev = Deno.env.get('MODE') === 'development';
 const clients = new Set<WebSocket>();
-let collecting = false;
+let delayWatcher = false;
 
 export async function runserver() {
   const options = { port: 3000, hostname: 'localhost' };
@@ -16,6 +19,7 @@ export async function runserver() {
 
   if (dev) {
     await collectstatic();
+    await bundle();
   }
 
   Deno.serve(
@@ -38,16 +42,23 @@ export async function runserver() {
       if (pathname.startsWith('/static/')) {
         const filePath = `${pathname.replace('/static/', './static/')}`;
 
-        if (filePath.endsWith('.ts')) {
+        if (
+          filePath.endsWith('.ts') || filePath.endsWith('.js')
+        ) {
           const code = await Deno.readTextFile(filePath);
           return new Response(code, {
             headers: { 'Content-Type': 'application/javascript' },
           });
+        } else if (filePath.endsWith('.json')) {
+          const code = await Deno.readTextFile(filePath);
+          return new Response(code, {
+            headers: { 'Content-Type': 'text/json' },
+          });
         }
       }
 
-      for (const appName in managers) {
-        const app = managers[appName];
+      for (const appName in apps) {
+        const app = apps[appName];
         const urlpatterns = app.urls?.urlpatterns ?? [];
 
         for (const pattern of urlpatterns) {
@@ -72,19 +83,15 @@ export async function runserver() {
     const watcher = Deno.watchFs(STATICFILES_DIRS);
     for await (const event of watcher) {
       if (event.kind === 'modify') {
-        if (!collecting) {
-          collecting = true;
-          for (let srcPath of event.paths) {
-            srcPath = srcPath.split(SRC_ROOT)[1];
-            srcPath = SRC_ROOT + srcPath;
-            const destPath = `${STATIC_ROOT}/${srcPath.split('static')[1]}`;
-            const destDir = destPath.split('/').slice(0, -1).join('/');
-            await transpileFile(srcPath, destPath, destDir);
-          }
+        if (!delayWatcher) {
+          delayWatcher = true;
+
+          await collectstatic();
+          await bundle();
 
           // Prevent duplicate reloads
           setTimeout(() => {
-            collecting = false;
+            delayWatcher = false;
 
             for (const client of clients) {
               client.send('reload');
@@ -96,46 +103,73 @@ export async function runserver() {
   }
 }
 
-async function transpileFile(
+async function copyFile(
   srcPath: string,
   destPath: string,
   destDir: string,
 ) {
-  if (srcPath.endsWith('.ts')) {
-    const result = await bundle(
-      srcPath,
-      {
-        importMap: './deno.json',
-        minify: !dev,
-      },
-    );
-    const code = result.code;
-    await Deno.mkdir(destDir, { recursive: true });
-    await Deno.writeTextFile(destPath, code, { create: true });
-  }
+  await Deno.mkdir(destDir, { recursive: true });
+  await Deno.copyFile(srcPath, destPath);
 }
 
-async function transpileRecursively(srcDir: string, destDir: string) {
+async function copyRecursively(srcDir: string, destDir: string) {
   for await (const entry of Deno.readDir(srcDir)) {
     const srcPath = `${srcDir}/${entry.name}`;
     const destPath = `${destDir}/${entry.name}`;
 
     if (entry.isFile) {
-      await transpileFile(srcPath, destPath, destDir);
+      await copyFile(srcPath, destPath, destDir);
     } else if (entry.isDirectory) {
-      await transpileRecursively(srcPath, destPath);
+      await copyRecursively(srcPath, destPath);
     }
   }
 }
 
 export async function collectstatic() {
   console.info('Collecting static files...');
-  collecting = true;
 
   for (const dir of STATICFILES_DIRS) {
-    await transpileRecursively(dir, STATIC_ROOT);
+    await copyRecursively(dir, STATIC_ROOT);
   }
 
-  collecting = false;
+  console.info('Done.');
+}
+
+// Bundle
+const files = [];
+async function findFiles(srcDir: string) {
+  for await (const entry of Deno.readDir(srcDir)) {
+    const srcPath = `${srcDir}/${entry.name}`;
+
+    if (entry.isFile && srcPath.endsWith('.ts')) {
+      files.push(srcPath);
+      continue;
+    } else if (entry.isDirectory) {
+      await findFiles(srcPath);
+      continue;
+    }
+  }
+
+  return null;
+}
+
+export async function bundle() {
+  console.info('Bundling...');
+
+  await findFiles(STATIC_ROOT);
+  await build({
+    plugins: [
+      httpImports({}),
+    ],
+    entryPoints: files,
+    bundle: false,
+    outExtension: { '.js': '.ts' },
+    allowOverwrite: true,
+    write: true,
+    format: 'esm',
+    platform: 'browser',
+    outdir: STATIC_ROOT,
+  });
+
   console.info('Done.');
 }

@@ -1,4 +1,4 @@
-import { managers } from '@alexi/apps/registry';
+import { apps } from '@alexi/web/registry';
 
 export async function execute() {
   const mode = Deno.env.get('MODE');
@@ -9,8 +9,8 @@ export async function execute() {
 
   if (command) {
     if (subcommand === 'help') {
-      for (const appName in managers) {
-        const appConfig = managers[appName];
+      for (const appName in apps) {
+        const appConfig = apps[appName];
         if (appConfig.commands) {
           for (const commandName in appConfig.commands) {
             if (commandName === command) {
@@ -24,8 +24,8 @@ export async function execute() {
       }
     }
 
-    for (const app in managers) {
-      const appConfig = managers[app];
+    for (const app in apps) {
+      const appConfig = apps[app];
       if (appConfig.commands) {
         for (const commandName in appConfig.commands) {
           if (commandName === command) {
@@ -42,8 +42,8 @@ export async function execute() {
     );
     console.info('Available subcommands:\n');
 
-    for (const appName in managers) {
-      const appConfig = managers[appName];
+    for (const appName in apps) {
+      const appConfig = apps[appName];
       if (appConfig.commands) {
         console.info(`[${appName}]`);
         for (const commandName in appConfig.commands) {

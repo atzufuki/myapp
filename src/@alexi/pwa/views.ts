@@ -1,5 +1,35 @@
-import TemplateBackend from '@alexi/web/templates.ts';
-import { reverse } from '@alexi/web/urls.ts';
+import TemplateBackend from '@alexi/pwa/templates.ts';
+import { reverse } from '@alexi/pwa/urls.ts';
+
+export class LocalRequest {
+  url: string;
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+
+  json() {}
+
+  constructor(
+    url: string,
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
+  ) {
+    this.url = url;
+    this.method = method;
+  }
+}
+
+export class LocalResponse {
+  body: string | HTMLElement;
+  status: number;
+  headers: { [key: string]: string };
+
+  constructor(
+    body: string | HTMLElement,
+    options: { status: number; headers?: { [key: string]: string } },
+  ) {
+    this.body = body;
+    this.status = options.status;
+    this.headers = options.headers || {};
+  }
+}
 
 export class View {
   declare urlName: string;
@@ -9,9 +39,9 @@ export class View {
     return new this();
   }
 
-  async dispatch(request: Request) {
+  async dispatch(request: LocalRequest) {
     const pattern = reverse(this.urlName);
-    const requestUrl = new URL(request.url);
+    const requestUrl = new URL(location.origin + request.url);
     const patternParts = pattern.path.split('/').filter((part) => part !== '');
     const urlParts = requestUrl.pathname.split('/').filter((part) =>
       part !== ''
@@ -53,27 +83,27 @@ export class View {
     return await this.renderToResponse(context);
   }
 
-  async getContextData(request: Request) {
+  async getContextData(request: LocalRequest) {
     return {};
   }
 
-  async get(request: Request): Promise<object | null> {
+  async get(request: LocalRequest): Promise<object | null> {
     return await this.getContextData(request);
   }
 
-  async post(request: Request): Promise<object | null> {
+  async post(request: LocalRequest): Promise<object | null> {
     return await this.getContextData(request);
   }
 
-  async put(request: Request): Promise<object | null> {
+  async put(request: LocalRequest): Promise<object | null> {
     return await this.getContextData(request);
   }
 
-  async patch(request: Request): Promise<object | null> {
+  async patch(request: LocalRequest): Promise<object | null> {
     return await this.getContextData(request);
   }
 
-  async delete(request: Request): Promise<object | null> {
+  async delete(request: LocalRequest): Promise<object | null> {
     return await this.getContextData(request);
   }
 
@@ -81,7 +111,7 @@ export class View {
     context: { [key: string]: any },
   ) {
     const render = JSON.stringify(context);
-    return new Response(render, {
+    return new LocalResponse(render, {
       status: 200,
     });
   }
@@ -94,7 +124,11 @@ export class TemplateView extends View {
     context: { [key: string]: any },
   ) {
     const render = await this.render(context);
-    return new Response(render, {
+
+    const root = document.querySelector('#root');
+    root.replaceChildren(render);
+
+    return new LocalResponse(render, {
       status: 200,
       headers: {
         'content-type': 'text/html',
@@ -102,35 +136,9 @@ export class TemplateView extends View {
     });
   }
 
-  async render(context: { [key: string]: any }) {
+  async render(context: { [key: string]: any }): Promise<string | HTMLElement> {
     const backend = new TemplateBackend();
     const template = await backend.getTemplate(this.templateName);
-    return template(context);
-  }
-}
-
-export class APIView extends View {
-  async list(): Promise<any[]> {
-    throw new Error('Not implemented');
-  }
-
-  async create(obj: any): Promise<any> {
-    throw new Error('Not implemented');
-  }
-
-  async retrieve({ id }: any): Promise<any> {
-    throw new Error('Not implemented');
-  }
-
-  async update({ id }: any, obj: any): Promise<any> {
-    throw new Error('Not implemented');
-  }
-
-  async partialUpdate({ id }: any, obj: any): Promise<any> {
-    throw new Error('Not implemented');
-  }
-
-  async destroy({ id }: any): Promise<any> {
-    throw new Error('Not implemented');
+    return await template(context);
   }
 }

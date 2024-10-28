@@ -1,9 +1,9 @@
 import { IDBPDatabase, openDB } from 'idb';
 
-import { databases } from '@alexi/apps/conf';
-import { Model } from '@alexi/db/model';
-import { QuerySet } from '@alexi/db/query';
-import { BaseDatabaseBackend } from '@alexi/db/backends/base';
+import { databases } from '@alexi/conf/index.ts';
+import { Model } from '@alexi/db/model.ts';
+import { QuerySet } from '@alexi/db/query.ts';
+import { BaseDatabaseBackend } from '@alexi/db/backends/base.ts';
 
 export class IndexedDBBackend extends BaseDatabaseBackend {
   declare db: IDBPDatabase<unknown>;
