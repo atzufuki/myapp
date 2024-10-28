@@ -1,5 +1,5 @@
 import { LocalRequest, TemplateView } from '@alexi/pwa/views.ts';
-import { AssetsMixin } from '$myapp/mixins.ts';
+import { AssetsMixin } from 'myapp/mixins.ts';
 
 export class CounterView extends AssetsMixin(TemplateView) {
   templateName = 'myapp/counter.ts';

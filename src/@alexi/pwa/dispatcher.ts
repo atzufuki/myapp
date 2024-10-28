@@ -2,7 +2,7 @@ import { settings as globalSettings } from '@alexi/conf/index.ts';
 import { AppSettings } from '@alexi/types.ts';
 import { LocalRequest, LocalResponse } from '@alexi/pwa/views.ts';
 
-import { urlpatterns } from '$project/urls.ts';
+import { urlpatterns } from 'project/urls.ts';
 
 const settings = globalSettings as AppSettings;
 

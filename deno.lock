@@ -233,7 +233,6 @@
       "jsr:@std/path@^1.0.7",
       "npm:@open-wc/dedupe-mixin@1.4.0",
       "npm:esbuild@0.24",
-      "npm:idb@8.0.0",
       "npm:nunjucks@^3.2.4"
     ]
   }

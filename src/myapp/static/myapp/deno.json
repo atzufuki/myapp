@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "myapp/": "./",
+    "project/": "../../../../project/static/",
+    "@alexi/": "../../../../src/@alexi/",
+    "@open-wc/dedupe-mixin": "npm:@open-wc/dedupe-mixin@1.4.0",
+    "idb": "npm:idb@8.0.0"
+  }
+}
