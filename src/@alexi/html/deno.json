@@ -1,8 +1,41 @@
 {
+  "unstable": ["sloppy-imports"],
+  "lint": {
+    "rules": {
+      "tags": ["recommended"],
+      "exclude": [
+        "no-explicit-any",
+        "require-await",
+        "no-unused-vars",
+        "no-sloppy-imports"
+      ]
+    }
+  },
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "deno.window",
+      "DOM.Iterable",
+      "DOM.AsyncIterable"
+    ],
+    "strict": false,
+    "strictFunctionTypes": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": false
+  },
   "imports": {
     "@alexi/": "../../../src/@alexi/",
     "project/": "../../../project/static/",
     "@open-wc/dedupe-mixin": "npm:@open-wc/dedupe-mixin@1.4.0",
     "idb": "npm:idb@8.0.0"
+  },
+  "fmt": {
+    "useTabs": false,
+    "semiColons": true,
+    "singleQuote": true,
+    "indentWidth": 2
   }
 }
