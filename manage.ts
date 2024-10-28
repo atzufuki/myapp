@@ -19,7 +19,7 @@ async function main() {
   });
 
   await execute();
-  Deno.exit(0);
+  Deno.kill(Deno.pid);
 }
 
 main();
