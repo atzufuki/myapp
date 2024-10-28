@@ -23,12 +23,10 @@ export class IndexedDBBackend extends BaseDatabaseBackend {
   }
 
   async create(qs: QuerySet<any>, serialized: any): Promise<any> {
-    const { id, ...data } = serialized;
-
     const key = await this.db
       .transaction(qs.modelClass.meta.dbTable, 'readwrite')
       .objectStore(qs.modelClass.meta.dbTable)
-      .add({ ...data, id });
+      .add(serialized);
 
     return {
       id: key,
@@ -134,8 +132,6 @@ export class IndexedDBBackend extends BaseDatabaseBackend {
         cursor = await cursor.continue();
       }
     }
-
-    console.info('results', results);
 
     return results;
   }

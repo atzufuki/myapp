@@ -1,55 +1,33 @@
 import { Constructor, dedupeMixin } from '@open-wc/dedupe-mixin';
 import { View } from '@alexi/pwa/views';
+import { Asset } from 'myapp/models.ts';
 
 export const AssetsMixin = dedupeMixin(
   <T extends Constructor<View>>(SuperClass: T) =>
     class AssetsMixin extends SuperClass {
-      assets = [
-        { id: 1, name: 'Asset 1' },
-        {
-          id: 2,
-          name: 'Asset 2',
-        },
-      ];
-
       async list() {
-        return this.assets;
+        const instances = await Asset.objects.all().fetch();
+        return instances.toArray().map((instance) => instance.serialize());
       }
 
       async create(obj: any) {
-        this.assets.push(
-          obj,
-        );
-        return obj;
+        return await Asset.objects.create(obj);
       }
 
       async retrieve({ id }: any) {
-        return this.assets.find((asset) => asset.id === parseInt(id));
+        return await Asset.objects.get({ id });
       }
 
-      async update({ id }: any, obj: any) {
-        const index = this.assets.findIndex((asset) =>
-          asset.id === parseInt(id)
-        );
-        this.assets[index] = obj;
-        return obj;
+      async update({ id, ...obj }: any) {
+        return await Asset.objects.update({ id, defaults: obj });
       }
 
-      async partialUpdate({ id }: any, obj: any) {
-        const index = this.assets.findIndex((asset) =>
-          asset.id === parseInt(id)
-        );
-        this.assets[index] = { ...this.assets[index], ...obj };
-        return this.assets[index];
+      async partialUpdate({ id, ...obj }: any) {
+        return await Asset.objects.update({ id, defaults: obj });
       }
 
       async destroy({ id }: any) {
-        const index = this.assets.findIndex((asset) =>
-          asset.id === parseInt(id)
-        );
-        const deleted = this.assets[index];
-        this.assets = this.assets.filter((asset) => asset.id !== parseInt(id));
-        return deleted;
+        return await Asset.objects.delete({ id });
       }
     },
 );

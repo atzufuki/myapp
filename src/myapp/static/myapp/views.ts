@@ -25,12 +25,14 @@ export class AssetsView extends AssetsMixin(TemplateView) {
   }
 
   async post(request: LocalRequest) {
+    const randomName = Math.random().toString(36).substring(7);
+    const createdAsset = await this.create({
+      name: `Asset ${randomName}`,
+    });
+
     const context = super.post(request);
 
-    context['postAsset'] = await this.create({
-      id: this.assets.length + 1,
-      name: `Asset ${this.assets.length + 1}`,
-    });
+    context['postAsset'] = createdAsset;
 
     return context;
   }
@@ -40,7 +42,6 @@ export class AssetsView extends AssetsMixin(TemplateView) {
 
     context['putAsset'] = await this.update(
       { id: this.params.assetId },
-      await request.json(),
     );
 
     return context;
@@ -51,7 +52,6 @@ export class AssetsView extends AssetsMixin(TemplateView) {
 
     context['patchAsset'] = await this.partialUpdate(
       { id: this.params.assetId },
-      await request.json(),
     );
 
     return context;
