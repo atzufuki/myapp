@@ -52,7 +52,7 @@ export async function runserver() {
         } else if (filePath.endsWith('.json')) {
           const code = await Deno.readTextFile(filePath);
           return new Response(code, {
-            headers: { 'Content-Type': 'text/json' },
+            headers: { 'Content-Type': 'application/json' },
           });
         }
       }
@@ -169,6 +169,7 @@ export async function bundle() {
     format: 'esm',
     platform: 'browser',
     outdir: STATIC_ROOT,
+    target: 'esnext',
   });
 
   console.info('Done.');

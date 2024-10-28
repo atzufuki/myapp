@@ -1,5 +1,5 @@
 import { type Constructor, dedupeMixin } from '@open-wc/dedupe-mixin';
-import themejson from './material-theme.json' with { type: 'json' };
+import themejson from './material_theme_json.ts';
 
 type Scheme = {
   primary: string;
