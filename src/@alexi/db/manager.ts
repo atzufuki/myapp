@@ -9,7 +9,7 @@ import {
   OrderByParams,
   QuerySetClass,
   UpdateOrCreateParams,
-} from '@alexi/types.ts';
+} from '@alexi/db/types.ts';
 import { settings } from '@alexi/conf/index.ts';
 
 import { Model } from '@alexi/db/model.ts';
@@ -32,12 +32,15 @@ export class Manager<T extends Model<T>> {
     if (querysetClass) {
       this.querysetClass = querysetClass;
     }
-
-    this.databaseConfig = settings.DATABASES.default;
-    this.objects[this.databaseConfig.NAME] = [];
   }
 
   getQuerySet() {
+    this.databaseConfig = settings.DATABASES.default;
+
+    if (!this.objects[this.databaseConfig.NAME]) {
+      this.objects[this.databaseConfig.NAME] = [];
+    }
+
     const qs = new this.querysetClass(this.modelClass);
 
     if (this.databaseConfig.ENGINE) {
@@ -96,8 +99,12 @@ export class Manager<T extends Model<T>> {
       throw new Error(`Database ${databaseName} not found in settings`);
     }
 
-    this.objects[manager.databaseConfig.NAME] =
-      this.objects[manager.databaseConfig.NAME] || [];
+    if (
+      !this.objects[manager.databaseConfig.NAME]
+    ) {
+      this.objects[manager.databaseConfig.NAME] = [];
+    }
+
     return manager;
   }
 

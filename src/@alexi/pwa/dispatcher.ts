@@ -1,8 +1,6 @@
 import { settings as globalSettings } from '@alexi/conf/index.ts';
-import { AppSettings } from '@alexi/types.ts';
+import { AppSettings } from '@alexi/pwa/types.ts';
 import { LocalRequest, LocalResponse } from '@alexi/pwa/views.ts';
-
-import { urlpatterns } from 'project/urls.ts';
 
 const settings = globalSettings as AppSettings;
 
@@ -10,6 +8,7 @@ export async function dispatch(
   url: string,
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
 ) {
+  const urlpatterns = settings.ROOT_URLCONF;
   const request = new LocalRequest(url, method);
 
   const resolvedUrl = new URL(request.url, globalThis.location.origin);
@@ -35,16 +34,16 @@ export async function dispatch(
     const match = url.match(regex);
 
     if (match) {
-      // // Create an object with the parameter names and values
-      // const paramNames = (pattern.path.match(/:\w+/g) || []).map((name) =>
-      //   name.slice(1)
-      // );
-      // const params = paramNames.reduce((params, name, index) => {
-      //   params[name] = match[index + 1];
-      //   return params;
-      // }, {} as { [key: string]: string });
+      // Create an object with the parameter names and values
+      const paramNames = (pattern.path.match(/:\w+/g) || []).map((name) =>
+        name.slice(1)
+      );
+      const params = paramNames.reduce((params, name, index) => {
+        params[name] = match[index + 1];
+        return params;
+      }, {} as { [key: string]: string });
 
-      // request.params = params;
+      request.params = params;
 
       return await pattern.view.dispatch(request);
     }

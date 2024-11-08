@@ -4,6 +4,7 @@ import { reverse } from '@alexi/pwa/urls.ts';
 export class LocalRequest {
   url: string;
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  params: { [key: string]: string };
 
   json() {}
 

@@ -1,4 +1,4 @@
-import { ModelProps } from '@alexi/types.ts';
+import { ModelProps } from '@alexi/db/types.ts';
 import { DoesNotExist, MultipleObjectsReturned } from '@alexi/db/errors.ts';
 import { AutoField, Field } from '@alexi/db/fields.ts';
 import { Manager } from '@alexi/db/manager.ts';

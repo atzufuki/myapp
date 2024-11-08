@@ -1,9 +1,18 @@
-import { Model } from '@alexi/db/model.ts';
-import { Manager } from '@alexi/db/manager.ts';
-import { Field } from '@alexi/db/fields.ts';
-import { QuerySet } from '@alexi/db/query.ts';
-import { BaseDatabaseBackend } from '@alexi/db/backends/base.ts';
-import { Storage } from '@alexi/files/storage.ts';
+import type { Manager } from '@alexi/db/manager.ts';
+import type { Model } from '@alexi/db/model.ts';
+import type { Field } from '@alexi/db/fields.ts';
+import type { QuerySet } from '@alexi/db/query.ts';
+import type { BaseDatabaseBackend } from '@alexi/db/backends/base.ts';
+
+export type DATABASE = {
+  NAME: string;
+  ENGINE: typeof BaseDatabaseBackend;
+};
+
+export type DATABASES = {
+  default: DATABASE;
+  [key: string]: DATABASE;
+};
 
 type FieldValue<F> = F extends Field ? F['value'] : never;
 
@@ -65,52 +74,6 @@ export type ExecuteAction =
   | 'exists'
   | 'clear';
 
-type View = any;
-export type AsView = View;
-
-export type UrlPattern = {
-  path: string;
-  view: View;
-  name?: string;
-};
-
-type ResolvedReturnType<T> = T extends (...args: any[]) => Promise<infer R> ? R
-  : any;
-
-export type Context<T extends View> = ResolvedReturnType<any>;
-
-export type DATABASE = {
-  NAME: string;
-  ENGINE: typeof BaseDatabaseBackend;
-};
-
-export type DATABASES = {
-  default: DATABASE;
-  [key: string]: DATABASE;
-};
-
-export type STORAGE = {
-  NAME: string;
-  ENGINE: typeof Storage;
-};
-
-export type STORAGES = {
-  default: STORAGE;
-  [key: string]: STORAGE;
-};
-
-export type AppSettings = {
-  DATABASES: DATABASES;
-  STORAGES: STORAGES;
-  SPA_ENTRY: string;
-  INSTALLED_APPS: any[];
-  APPEND_SLASH: boolean;
-  ROOT_URLCONF: string;
-  [key: string]: any;
-};
-
-// v1
-
 export interface GetOrCreateParams {
   [key: string]: any;
   defaults: {
@@ -147,6 +110,7 @@ export interface FilterParams {
 export interface ExcludeParams {
   [key: string]: any;
 }
+
 export type OrderByParams<T extends Model<T>> = (
   | keyof ModelProps<T>
   | `-${keyof ModelProps<T> & string}`

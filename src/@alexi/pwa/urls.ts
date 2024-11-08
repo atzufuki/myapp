@@ -1,4 +1,4 @@
-import type { UrlPattern } from '@alexi/types.ts';
+import type { UrlPattern } from '@alexi/pwa/types.ts';
 import type { View } from '@alexi/pwa/views.ts';
 
 const routeMap: { [name: string]: any } = {};

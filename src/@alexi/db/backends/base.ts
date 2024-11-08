@@ -1,4 +1,4 @@
-import { CreateParams, GetParams, UpdateParams } from '@alexi/types.ts';
+import { CreateParams, GetParams, UpdateParams } from '@alexi/db/types.ts';
 import { Model } from '@alexi/db/model.ts';
 import { QuerySet } from '@alexi/db/query.ts';
 import { DoesNotExist, MultipleObjectsReturned } from '../errors.ts';

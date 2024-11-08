@@ -1,4 +1,4 @@
-import type { UrlPattern } from '@alexi/types.ts';
+import type { UrlPattern } from '@alexi/web/types.ts';
 
 export abstract class AppConfig {
   name: string | undefined;

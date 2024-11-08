@@ -1,6 +1,6 @@
 import { settings } from '@alexi/conf/index.ts';
 import { Storage } from '@alexi/files/storage.ts';
-import { FieldOptions } from '@alexi/types.ts';
+import { FieldOptions } from '@alexi/db/types.ts';
 import { Model } from '@alexi/db/model.ts';
 import { QuerySet } from '@alexi/db/query.ts';
 

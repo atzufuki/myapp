@@ -12,7 +12,7 @@ import {
   UpdateOrCreateParams,
   UpdateOrCreateResponse,
   UpdateParams,
-} from '@alexi/types.ts';
+} from '@alexi/db/types.ts';
 import { Model } from '@alexi/db/model.ts';
 import { Manager } from '@alexi/db/manager.ts';
 import { Field } from '@alexi/db/fields.ts';

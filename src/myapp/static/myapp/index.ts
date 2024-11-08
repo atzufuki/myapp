@@ -8,6 +8,7 @@ import { IndexedDBBackend } from '@alexi/db/backends/indexeddb.ts';
 import { dispatch } from '@alexi/pwa/dispatcher.ts';
 
 import { MyApp } from 'myapp/app.ts';
+import { urlpatterns } from 'myapp/urls.ts';
 
 async function main() {
   html.Div.define('html-div');
@@ -124,6 +125,7 @@ async function main() {
    */
 
   await setup({
+    ROOT_URLCONF: urlpatterns,
     INSTALLED_APPS: [
       //
       MyApp,
