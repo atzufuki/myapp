@@ -4,6 +4,7 @@
   "imports": {
     "@alexi/": "../../src/",
     "@alexi/html": "../../src/html/mod",
+    "@alexi/md3": "./mod.ts",
     "@open-wc/dedupe-mixin": "npm:@open-wc/dedupe-mixin@1.4.0"
   },
   "exports": {

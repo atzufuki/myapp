@@ -1,5 +1,5 @@
 import * as html from '@alexi/html';
-import * as md from '../index.ts';
+import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
