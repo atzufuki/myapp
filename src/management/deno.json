@@ -1,0 +1,12 @@
+{
+  "name": "@alexi/management",
+  "version": "0.1.0",
+  "imports": {
+    "@alexi/": "../../src/"
+  },
+  "exports": {
+    ".": "./mod.ts",
+    "./base": "./base.ts",
+    "./execute": "./execute.ts"
+  }
+}

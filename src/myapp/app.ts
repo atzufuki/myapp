@@ -1,4 +1,4 @@
-import { AppConfig } from '@alexi/web/config.ts';
+import { AppConfig } from '@alexi/web/config';
 
 export class MyApp extends AppConfig {
   name = 'myapp';

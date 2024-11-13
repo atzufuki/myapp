@@ -1,0 +1,20 @@
+{
+  "name": "@alexi/web",
+  "version": "0.1.0",
+  "imports": {
+    "esbuild": "npm:esbuild@^0.24.0",
+    "nunjucks": "npm:nunjucks@^3.2.4"
+  },
+  "exports": {
+    ".": "./mod.ts",
+    "./app": "./app.ts",
+    "./config": "./config.ts",
+    "./registry": "./registry.ts",
+    "./server": "./server.ts",
+    "./setup": "./setup.ts",
+    "./templates": "./templates.ts",
+    "./types": "./types.ts",
+    "./urls": "./urls.ts",
+    "./views": "./views.ts"
+  }
+}

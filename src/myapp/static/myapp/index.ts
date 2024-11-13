@@ -1,9 +1,8 @@
-import * as html from '@alexi/html/index.ts';
-import * as md from '@alexi/md3/index.ts';
+import * as html from '@alexi/html';
+import * as md from '@alexi/md3';
 
 import { setup } from '@alexi/pwa/setup.ts';
 import { apps } from '@alexi/pwa/registry.ts';
-import { settings } from '@alexi/conf/index.ts';
 import { IndexedDBBackend } from '@alexi/db/backends/indexeddb.ts';
 import { dispatch } from '@alexi/pwa/dispatcher.ts';
 
@@ -142,6 +141,7 @@ async function main() {
    * Create the IndexedDB database tables.
    */
 
+  const settings = globalThis.alexi.conf.settings;
   const backend = new settings.DATABASES.default.ENGINE();
   // deno-lint-ignore no-explicit-any
   await backend.init(settings.DATABASES.default.NAME, 1, (db: any) => {

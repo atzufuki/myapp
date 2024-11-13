@@ -1,0 +1,11 @@
+{
+  "name": "@alexi/html",
+  "version": "0.1.0",
+  "imports": {
+    "@alexi/": "../../src/"
+  },
+  "exports": {
+    ".": "./mod.ts",
+    "./types": "./types.ts"
+  }
+}

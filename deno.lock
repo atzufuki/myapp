@@ -230,10 +230,35 @@
       "jsr:@std/assert@1",
       "jsr:@std/fs@^1.0.5",
       "jsr:@std/io@0.225",
-      "jsr:@std/path@^1.0.7",
-      "npm:@open-wc/dedupe-mixin@1.4.0",
-      "npm:esbuild@0.24",
-      "npm:nunjucks@^3.2.4"
-    ]
+      "jsr:@std/path@^1.0.7"
+    ],
+    "members": {
+      "src/db": {
+        "dependencies": [
+          "npm:idb@8.0.0"
+        ]
+      },
+      "src/md3": {
+        "dependencies": [
+          "npm:@open-wc/dedupe-mixin@1.4.0"
+        ]
+      },
+      "src/myapp": {
+        "dependencies": [
+          "npm:@open-wc/dedupe-mixin@1.4.0"
+        ]
+      },
+      "src/myapp/static/myapp": {
+        "dependencies": [
+          "npm:@open-wc/dedupe-mixin@1.4.0"
+        ]
+      },
+      "src/web": {
+        "dependencies": [
+          "npm:esbuild@0.24",
+          "npm:nunjucks@^3.2.4"
+        ]
+      }
+    }
   }
 }

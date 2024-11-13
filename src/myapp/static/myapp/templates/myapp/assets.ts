@@ -1,5 +1,5 @@
-import * as html from '@alexi/html/index.ts';
-import * as md from '@alexi/md3/index.ts';
+import * as html from '@alexi/html';
+import * as md from '@alexi/md3';
 import { dispatch } from '@alexi/pwa/dispatcher.ts';
 
 export default class Assets extends md.ThemedElementMixin(

@@ -1,0 +1,12 @@
+{
+  "name": "@alexi/md3",
+  "version": "0.1.0",
+  "imports": {
+    "@alexi/": "../../src/",
+    "@alexi/html": "../../src/html/mod",
+    "@open-wc/dedupe-mixin": "npm:@open-wc/dedupe-mixin@1.4.0"
+  },
+  "exports": {
+    ".": "./mod.ts"
+  }
+}
