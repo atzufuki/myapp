@@ -1,5 +1,5 @@
 import { build } from 'esbuild';
-import { httpImports } from 'https://deno.land/x/esbuild_serve@1.4.1/features/httpImports.ts';
+import { httpImports } from './httpImports.ts';
 
 const STATIC_ROOT = './static';
 const STATICFILES_DIRS = [
