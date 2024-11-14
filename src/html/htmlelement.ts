@@ -1,5 +1,5 @@
-import { merge } from '@alexi/html/merge.ts';
-import { IncomingProps, RenderObject } from '@alexi/html/types.ts';
+import { merge } from './merge.ts';
+import { IncomingProps, RenderObject } from './types.ts';
 
 export type HTMLElementProps<T = unknown> = IncomingProps<HTMLElement, T>;
 

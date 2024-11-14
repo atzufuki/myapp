@@ -19,15 +19,15 @@ export const AssetsMixin = dedupeMixin(
       }
 
       async update({ id, ...obj }: any) {
-        return await Asset.objects.update({ id, defaults: obj });
+        return await Asset.objects.updateOrCreate({ id, defaults: obj });
       }
 
       async partialUpdate({ id, ...obj }: any) {
-        return await Asset.objects.update({ id, defaults: obj });
+        return await Asset.objects.updateOrCreate({ id, defaults: obj });
       }
 
       async destroy({ id }: any) {
-        return await Asset.objects.delete({ id });
+        return await Asset.objects.filter({ id }).delete();
       }
     },
 );

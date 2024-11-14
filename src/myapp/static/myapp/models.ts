@@ -1,7 +1,7 @@
-import { ModelProps } from '@alexi/db/types.ts';
-import { Model } from '@alexi/db/model.ts';
-import { Manager } from '@alexi/db/manager.ts';
-import { CharField } from '@alexi/db/fields.ts';
+import { ModelProps } from '@alexi/db/types';
+import { Model } from '@alexi/db/model';
+import { Manager } from '@alexi/db/manager';
+import { CharField } from '@alexi/db/fields';
 
 export class User extends Model<User> {
   username = new CharField();

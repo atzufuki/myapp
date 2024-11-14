@@ -17,6 +17,12 @@ async function main() {
         ENGINE: null,
       },
     },
+    STATIC_ROOT: './static',
+    STATICFILES: [
+      './src/myapp/static/myapp/index.ts',
+      './src/myapp/static/myapp/templates/myapp/counter.ts',
+      './src/myapp/static/myapp/templates/myapp/assets.ts',
+    ],
   });
 
   await execute();

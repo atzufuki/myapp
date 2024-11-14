@@ -1,9 +1,9 @@
 import * as html from '@alexi/html';
 import * as md from '@alexi/md3';
 
-import { setup } from '@alexi/pwa/setup.ts';
+import { setup } from '@alexi/pwa/setup';
 import { IndexedDBBackend } from '@alexi/db/backends/indexeddb.ts';
-import { dispatch } from '@alexi/pwa/dispatcher.ts';
+import { dispatch } from '@alexi/pwa/dispatcher';
 
 import { MyApp } from 'myapp/app.ts';
 import { urlpatterns } from 'myapp/urls.ts';

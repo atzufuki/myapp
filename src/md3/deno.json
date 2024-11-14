@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "imports": {
     "@alexi/": "../../src/",
-    "@alexi/html": "../../src/html/mod",
+    "@alexi/html": "../../src/html/mod.ts",
     "@alexi/md3": "./mod.ts",
     "@open-wc/dedupe-mixin": "npm:@open-wc/dedupe-mixin@1.4.0"
   },
   "exports": {
-    ".": "./mod.ts"
+    ".": "./mod.ts",
+    "./merge.ts": "./merge.ts"
   }
 }

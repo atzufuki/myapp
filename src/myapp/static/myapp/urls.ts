@@ -1,4 +1,4 @@
-import { path } from '@alexi/pwa/urls.ts';
+import { path } from '@alexi/pwa/urls';
 import { AssetsView, CounterView } from 'myapp/views.ts';
 
 export const urlpatterns = [

@@ -1,6 +1,6 @@
 import * as html from '@alexi/html';
 import * as md from '@alexi/md3';
-import { dispatch } from '@alexi/pwa/dispatcher.ts';
+import { dispatch } from '@alexi/pwa/dispatcher';
 
 export default class Counter extends md.ThemedElementMixin(
   html.HTMLElement,
