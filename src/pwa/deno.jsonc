@@ -2,8 +2,7 @@
   "name": "@alexi/pwa",
   "version": "0.1.0",
   "imports": {
-    "@alexi/pwa/": "./",
-    "@alexi/web/": "../web/"
+    "@alexi/pwa/": "./"
   },
   "exports": {
     ".": "./mod.ts",
