@@ -1,5 +1,4 @@
-import { setup } from '@alexi/web/setup';
-import { execute } from '@alexi/management/execute';
+import { execute, setup } from '@alexi/web';
 import { AlexiWebApp } from '@alexi/web/app';
 import { urlpatterns } from 'project/urls';
 import { MyApp } from 'myapp/app';

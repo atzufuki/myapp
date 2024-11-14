@@ -1,4 +1,4 @@
-import { BaseCommand } from '@alexi/management/base';
+import { BaseCommand } from '@alexi/web/base_command';
 import { User } from '../models.ts';
 
 export class Command extends BaseCommand {

@@ -1,9 +1,8 @@
-import { apps } from '@alexi/pwa/registry.ts';
-
 export default class TemplateBackend {
   templatesDirname = 'templates';
 
   async getTemplate(templateName: string): Promise<any> {
+    const apps = globalThis.alexi.conf.apps;
     const [templateDirName, fileName] = templateName.split('/');
 
     for (const appName in apps) {

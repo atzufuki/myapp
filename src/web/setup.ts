@@ -1,14 +1,12 @@
-import { apps } from '@alexi/web/registry';
-
 export async function setup(settings: any) {
-  globalThis.alexi = { conf: { settings: settings } };
+  globalThis.alexi = { conf: { settings: settings, apps: {}, databases: {} } };
 
   for (const AppConfig of settings.INSTALLED_APPS) {
     const app = new (AppConfig as any)();
-    apps[app.name] = app;
-    apps[app.name].models = await app.getModels?.();
-    apps[app.name].views = await app.getViews?.();
-    apps[app.name].urls = await app.getUrls?.();
-    apps[app.name].commands = await app.getCommands?.();
+    globalThis.alexi.conf.apps[app.name] = app;
+    globalThis.alexi.conf.apps[app.name].models = await app.getModels?.();
+    globalThis.alexi.conf.apps[app.name].views = await app.getViews?.();
+    globalThis.alexi.conf.apps[app.name].urls = await app.getUrls?.();
+    globalThis.alexi.conf.apps[app.name].commands = await app.getCommands?.();
   }
 }

@@ -1,0 +1,42 @@
+name: Deploy to npm
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Cache Deno modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/deno
+          key: ${{ runner.os }}-deno-${{ hashFiles('**/deps.ts') }}
+          restore-keys: |
+            ${{ runner.os }}-deno-
+
+      - name: Install dependencies
+        run: deno cache deps.ts
+
+      - name: Run tests
+        run: deno test
+
+      - name: Build project
+        run: deno bundle src/main.ts dist/bundle.js
+
+      - name: Convert Deno module to Node.js
+        run: deno run --allow-read --allow-write https://deno.land/x/deno2node/cli.ts src/main.ts --out-dir dist
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

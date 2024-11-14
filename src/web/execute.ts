@@ -1,11 +1,10 @@
-import { apps } from '@alexi/web/registry';
-
 export async function execute() {
   const mode = Deno.env.get('MODE');
   const command = mode !== 'development' && !Deno.args[0]
     ? 'runserver'
     : Deno.args[0];
   const subcommand = Deno.args[1];
+  const apps = globalThis.alexi.conf.apps;
 
   if (command) {
     if (subcommand === 'help') {

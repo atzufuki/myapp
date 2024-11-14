@@ -1,6 +1,5 @@
 import { existsSync } from '@std/fs';
 import nunjucks from 'npm:nunjucks';
-import { apps } from '@alexi/web/registry';
 
 export default class TemplateBackend {
   templatesDirname = 'templates';
@@ -9,6 +8,7 @@ export default class TemplateBackend {
     const root = Deno.cwd();
     const [templateDirName, fileName] = templateName.split('/');
 
+    const apps = globalThis.alexi.conf.apps;
     for (const appName in apps) {
       const [name, extension] = fileName.split('.');
       const importPath =

@@ -3,7 +3,6 @@
     "./src/db",
     "./src/files",
     "./src/html",
-    "./src/management",
     "./src/md3",
     "./src/myapp",
     "./src/myapp/static/myapp",

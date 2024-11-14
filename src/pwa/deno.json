@@ -8,7 +8,6 @@
     ".": "./mod.ts",
     "./config.ts": "./config.ts",
     "./dispatcher.ts": "./dispatcher.ts",
-    "./registry.ts": "./registry.ts",
     "./setup.ts": "./setup.ts",
     "./templates.ts": "./templates.ts",
     "./types.ts": "./types.ts",

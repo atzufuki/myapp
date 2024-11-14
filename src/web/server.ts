@@ -1,4 +1,3 @@
-import { apps } from '@alexi/web/registry';
 import { build } from 'esbuild';
 import { httpImports } from 'https://deno.land/x/esbuild_serve@1.4.1/features/httpImports.ts';
 
@@ -57,6 +56,7 @@ export async function runserver() {
         }
       }
 
+      const apps = globalThis.alexi.conf.apps;
       for (const appName in apps) {
         const app = apps[appName];
         const urlpatterns = app.urls?.urlpatterns ?? [];

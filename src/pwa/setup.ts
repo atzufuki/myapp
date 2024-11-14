@@ -1,21 +1,11 @@
-import { apps } from '@alexi/pwa/registry.ts';
-
 export async function setup(settings: any) {
-  /**
-   * Load global settings.
-   */
-
-  globalThis.alexi = { conf: { settings: settings, databases: {} } };
-
-  /**
-   * Load all apps and their models, views and urls.
-   */
+  globalThis.alexi = { conf: { settings: settings, apps: {}, databases: {} } };
 
   for (const AppConfig of settings.INSTALLED_APPS) {
     const app = new (AppConfig as any)();
-    apps[app.name] = app;
-    apps[app.name].models = await app.getModels?.();
-    apps[app.name].views = await app.getViews?.();
-    apps[app.name].urls = await app.getUrls?.();
+    globalThis.alexi.conf.apps[app.name] = app;
+    globalThis.alexi.conf.apps[app.name].models = await app.getModels?.();
+    globalThis.alexi.conf.apps[app.name].views = await app.getViews?.();
+    globalThis.alexi.conf.apps[app.name].urls = await app.getUrls?.();
   }
 }
