@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "imports": {
     "@alexi/db/": "./",
-    "@alexi/files/": "../files/",
     "idb": "npm:idb@8.0.0"
   },
   "exports": {

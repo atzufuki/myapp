@@ -56,20 +56,16 @@ export async function runserver() {
         }
       }
 
-      const apps = globalThis.alexi.conf.apps;
-      for (const appName in apps) {
-        const app = apps[appName];
-        const urlpatterns = app.urls?.urlpatterns ?? [];
+      const settings = globalThis.alexi.conf.settings;
+      const urlpatterns = settings.ROOT_URLCONF;
+      for (const pattern of urlpatterns) {
+        const url = pathname.startsWith('/') ? pathname.slice(1) : pathname;
+        const regexPath = pattern.path.replace(/:\w+/g, '([^/]+)');
+        const regex = new RegExp(`^${regexPath}/?$`);
+        const match = url.match(regex);
 
-        for (const pattern of urlpatterns) {
-          const url = pathname.startsWith('/') ? pathname.slice(1) : pathname;
-          const regexPath = pattern.path.replace(/:\w+/g, '([^/]+)');
-          const regex = new RegExp(`^${regexPath}/?$`);
-          const match = url.match(regex);
-
-          if (match) {
-            return await pattern.view.dispatch(request);
-          }
+        if (match) {
+          return await pattern.view.dispatch(request);
         }
       }
 

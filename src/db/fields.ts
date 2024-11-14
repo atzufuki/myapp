@@ -1,4 +1,3 @@
-import { Storage } from '@alexi/files/storage.ts';
 import { FieldOptions } from '@alexi/db/types.ts';
 import { Model } from '@alexi/db/model.ts';
 import { QuerySet } from '@alexi/db/query.ts';
@@ -246,42 +245,6 @@ export class AutoField extends IntegerField {
   }
 }
 
-export class FileField extends Field {
-  uploadTo: string;
-  storageClass: typeof Storage | string;
-  absoluteUri?: string;
-
-  constructor(public options?: FieldOptions<FileField>) {
-    super();
-    this.init(options);
-  }
-
-  async save(file: File) {
-    const settings = globalThis.alexi.conf.settings;
-
-    this.value = `${this.uploadTo}/${file.name}`;
-
-    let storageClass: any;
-    if (typeof this.storageClass === 'string') {
-      storageClass = settings.STORAGES[this.storageClass].ENGINE;
-    } else if (this.storageClass.prototype instanceof Storage) {
-      storageClass = this.storageClass;
-    }
-
-    const storage = new storageClass();
-    await storage.uploadFile(this.value, file);
-  }
-}
-export class ImageField extends FileField {
-  width?: number;
-  height?: number;
-
-  constructor(public options?: FieldOptions<ImageField>) {
-    super();
-    this.init(options);
-  }
-}
-
 export class DateField extends Field {
   constructor(public options?: FieldOptions<DateField>) {
     super();
@@ -315,7 +278,5 @@ export default {
   ForeignKey,
   ManyToManyField,
   AutoField,
-  FileField,
-  ImageField,
   DateField,
 };

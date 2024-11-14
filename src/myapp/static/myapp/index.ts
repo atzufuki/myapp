@@ -146,6 +146,8 @@ async function main() {
   // deno-lint-ignore no-explicit-any
   await backend.init(settings.DATABASES.default.NAME, 1, (db: any) => {
     for (const appName in apps) {
+      console.log(1, apps[appName].models);
+
       for (const modelName in apps[appName].models) {
         const model = apps[appName].models[modelName];
 
