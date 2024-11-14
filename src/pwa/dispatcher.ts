@@ -15,11 +15,7 @@ export async function dispatch(
   }
   request.url = `${resolvedUrl.pathname}${resolvedUrl.search}`;
 
-  // if (action === 'push') {
   globalThis.history.pushState({}, '', request.url);
-  // } else if (action === 'replace') {
-  //   globalThis.history.replaceState({}, '', request.url);
-  // }
 
   for (const pattern of urlpatterns) {
     const url = resolvedUrl.pathname.startsWith('/')

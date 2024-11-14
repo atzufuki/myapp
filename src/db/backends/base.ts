@@ -1,7 +1,7 @@
 import { CreateParams, GetParams, UpdateParams } from '@alexi/db/types.ts';
 import { Model } from '@alexi/db/model.ts';
 import { QuerySet } from '@alexi/db/query.ts';
-import { DoesNotExist, MultipleObjectsReturned } from '../errors.ts';
+import { DoesNotExist, MultipleObjectsReturned } from '@alexi/db/errors.ts';
 
 export class BaseDatabaseBackend {
   declare db: any;

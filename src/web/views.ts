@@ -1,5 +1,5 @@
-import TemplateBackend from '@alexi/web/templates';
-import { reverse } from '@alexi/web/urls';
+import TemplateBackend from '@alexi/web/templates.ts';
+import { reverse } from '@alexi/web/urls.ts';
 
 export class View {
   declare urlName: string;

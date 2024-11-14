@@ -1,5 +1,5 @@
 import { APIView, TemplateView } from '@alexi/web/views';
-import { AssetsMixin } from 'myapp/mixins';
+import { AssetsMixin } from 'myapp/mixins.ts';
 
 export class MyAppView extends AssetsMixin(TemplateView) {
   templateName = 'myapp/myapp.html';

@@ -34,15 +34,13 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": false
   },
-  "unstable": ["sloppy-imports"],
   "lint": {
     "rules": {
       "tags": ["recommended"],
       "exclude": [
         "no-explicit-any",
         "require-await",
-        "no-unused-vars",
-        "no-sloppy-imports"
+        "no-unused-vars"
       ]
     }
   },
@@ -50,9 +48,6 @@
     "useTabs": false,
     "semiColons": true,
     "singleQuote": true,
-    "indentWidth": 2,
-    "options": {
-      "singleQuote": true
-    }
+    "indentWidth": 2
   }
 }

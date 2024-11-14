@@ -1,5 +1,5 @@
 import { path } from '@alexi/web/urls';
-import { AssetsAPIView, MyAppView } from 'myapp/views';
+import { AssetsAPIView, MyAppView } from 'myapp/views.ts';
 
 export const urlpatterns = [
   path('', MyAppView.asView(), 'home'),

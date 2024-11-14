@@ -5,8 +5,6 @@ export async function setup(settings: any) {
     const app = new (AppConfig as any)();
     globalThis.alexi.conf.apps[app.name] = app;
     globalThis.alexi.conf.apps[app.name].models = await app.getModels?.();
-    globalThis.alexi.conf.apps[app.name].views = await app.getViews?.();
-    globalThis.alexi.conf.apps[app.name].urls = await app.getUrls?.();
     globalThis.alexi.conf.apps[app.name].commands = await app.getCommands?.();
   }
 }
