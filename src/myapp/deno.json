@@ -2,6 +2,7 @@
   "version": "0.1.0",
   "imports": {
     "@open-wc/dedupe-mixin": "npm:@open-wc/dedupe-mixin@1.4.0",
+    "express": "npm:express@^4.21.1",
     "myapp/": "./"
   }
 }
