@@ -8,7 +8,6 @@ import { AdminFirestoreBackend } from '@alexi/firebase/backends';
 
 import { MyApp } from 'myapp/app.ts';
 
-
 await setup({
   INSTALLED_APPS: [
     //

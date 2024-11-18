@@ -1,30 +1,42 @@
 {
+  "hosting": [
+    {
+      "target": "",
+      "public": "./static/myapp",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ],
   "functions": [
     {
-      "source": "./src/functions",
+      "source": "./project/functions",
       "runtime": "nodejs20",
       "codebase": "default",
       "ignore": [
-        ".**",
-        "*.log",
-        "node_modules/**",
-        "project/**",
-        "src/**",
-        "static/myapp/**",
-        "firebase.json",
-        "manage.ts",
-        "package.json",
-        "package-lock.json",
-        "README.md",
-        "tsconfig.json",
-        "vite.config.ts"
+        "main.ts"
       ]
     }
   ],
   "firestore": {
     "rules": "firestore.rules"
   },
+  "storage": {
+    "rules": "storage.rules"
+  },
   "emulators": {
+    "hosting": {
+      "host": "0.0.0.0",
+      "port": 5000
+    },
     "functions": {
       "host": "0.0.0.0",
       "port": 5001
@@ -32,6 +44,10 @@
     "firestore": {
       "host": "0.0.0.0",
       "port": 5002
+    },
+    "storage": {
+      "host": "0.0.0.0",
+      "port": 5003
     },
     "auth": {
       "host": "0.0.0.0",
