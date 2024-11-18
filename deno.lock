@@ -2,7 +2,8 @@
   "version": "4",
   "specifiers": {
     "jsr:@alexi/db@~0.1.1": "0.1.1",
-    "jsr:@alexi/firebase@0.1": "0.1.0",
+    "jsr:@alexi/firebase@~0.1.5": "0.1.5",
+    "jsr:@alexi/firebase@~0.1.6": "0.1.6",
     "jsr:@alexi/pwa@~0.1.3": "0.1.3",
     "jsr:@alexi/web@~0.1.2": "0.1.2",
     "jsr:@deno/cache-dir@0.8": "0.8.0",
@@ -16,8 +17,8 @@
     "jsr:@std/bytes@~0.218.2": "0.218.2",
     "jsr:@std/encoding@1.0.1": "1.0.1",
     "jsr:@std/encoding@^1.0.5": "1.0.5",
-    "jsr:@std/fmt@1.0.3": "1.0.3",
     "jsr:@std/fmt@~0.218.2": "0.218.2",
+    "jsr:@std/fs@1": "1.0.5",
     "jsr:@std/fs@1.0.1": "1.0.1",
     "jsr:@std/fs@^1.0.5": "1.0.5",
     "jsr:@std/fs@~0.218.2": "0.218.2",
@@ -27,6 +28,7 @@
     "jsr:@std/json@1": "1.0.1",
     "jsr:@std/jsonc@1.0.0": "1.0.0",
     "jsr:@std/path@0.223": "0.223.0",
+    "jsr:@std/path@1": "1.0.8",
     "jsr:@std/path@1.0.2": "1.0.2",
     "jsr:@std/path@1.0.3": "1.0.3",
     "jsr:@std/path@^1.0.2": "1.0.8",
@@ -34,6 +36,7 @@
     "jsr:@std/path@^1.0.7": "1.0.8",
     "jsr:@std/path@~0.218.2": "0.218.2",
     "npm:@open-wc/dedupe-mixin@1.4.0": "1.4.0",
+    "npm:@types/node@*": "22.5.4",
     "npm:esbuild@0.24": "0.24.0",
     "npm:express@^4.21.1": "4.21.1",
     "npm:firebase-admin@13": "13.0.0",
@@ -48,8 +51,19 @@
         "npm:idb"
       ]
     },
-    "@alexi/firebase@0.1.0": {
-      "integrity": "e136f326988d8c0081daf028149ad9c51c0321abaeb96785840583c2ded67096",
+    "@alexi/firebase@0.1.5": {
+      "integrity": "ea8cfb8555bf0a5f7a4d4d681e7035881e0addced49f33185d974646efefb9eb",
+      "dependencies": [
+        "jsr:@alexi/db",
+        "jsr:@alexi/web",
+        "jsr:@luca/esbuild-deno-loader",
+        "npm:esbuild",
+        "npm:firebase-admin",
+        "npm:firebase-functions"
+      ]
+    },
+    "@alexi/firebase@0.1.6": {
+      "integrity": "a12d7d8098c1ae38d9f0f0cfce5afa426d2b91ea81667c6cf4d3f195ef8bb3a4",
       "dependencies": [
         "jsr:@alexi/db",
         "jsr:@alexi/web",
@@ -74,7 +88,7 @@
     "@deno/cache-dir@0.8.0": {
       "integrity": "e87e80a404958f6350d903e6238b72afb92468378b0b32111f7a1e4916ac7fe7",
       "dependencies": [
-        "jsr:@std/fmt@~0.218.2",
+        "jsr:@std/fmt",
         "jsr:@std/fs@~0.218.2",
         "jsr:@std/io@~0.218.2",
         "jsr:@std/path@~0.218.2"
@@ -130,9 +144,6 @@
     },
     "@std/fmt@0.218.2": {
       "integrity": "99526449d2505aa758b6cbef81e7dd471d8b28ec0dcb1491d122b284c548788a"
-    },
-    "@std/fmt@1.0.3": {
-      "integrity": "97765c16aa32245ff4e2204ecf7d8562496a3cb8592340a80e7e554e0bb9149f"
     },
     "@std/fs@0.218.2": {
       "integrity": "dd9431453f7282e8c577cc22c9e6d036055a9a980b5549f887d6012969fabcca"
@@ -2170,7 +2181,7 @@
   "workspace": {
     "dependencies": [
       "jsr:@alexi/db@~0.1.1",
-      "jsr:@alexi/firebase@0.1",
+      "jsr:@alexi/firebase@~0.1.6",
       "jsr:@alexi/pwa@~0.1.3",
       "jsr:@alexi/web@~0.1.2",
       "jsr:@deno/emit@0.45",
@@ -2179,9 +2190,19 @@
       "jsr:@std/fs@^1.0.5",
       "jsr:@std/io@0.225",
       "jsr:@std/path@^1.0.7",
-      "npm:firebase-admin@13"
+      "npm:firebase-admin@^12.7.0"
     ],
     "members": {
+      "src/functions": {
+        "packageJson": {
+          "dependencies": [
+            "npm:axios@^1.7.5",
+            "npm:express@^4.19.2",
+            "npm:firebase-admin@^12.7.0",
+            "npm:firebase-functions@^6.1.0"
+          ]
+        }
+      },
       "src/md3": {
         "dependencies": [
           "npm:@open-wc/dedupe-mixin@1.4.0"

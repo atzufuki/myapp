@@ -26,6 +26,10 @@ async function main() {
       './src/myapp/static/myapp/templates/myapp/assets.ts',
     ],
     FIREBASE: {
+      ENTRY_POINTS: [
+        './src/functions/main.ts',
+      ],
+      OUTFILE:'./src/functions/main.js',
       EXTERNAL: [
         'firebase-admin',
         'firebase-admin/app',

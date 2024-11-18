@@ -2,11 +2,12 @@ import process from 'node:process';
 import { initializeApp } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 
-import { setup } from '@alexi/web/setup';
+import { setup } from '@alexi/firebase/setup';
 import { setupFunctions } from '@alexi/firebase/functions';
 import { AdminFirestoreBackend } from '@alexi/firebase/backends';
 
 import { MyApp } from 'myapp/app.ts';
+
 
 await setup({
   INSTALLED_APPS: [

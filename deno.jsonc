@@ -1,6 +1,7 @@
 {
   "workspace": [
     "./src/files",
+    "./src/functions",
     "./src/html",
     "./src/md3",
     "./src/myapp",
@@ -8,7 +9,7 @@
   ],
   "imports": {
     "@alexi/db": "jsr:@alexi/db@^0.1.1",
-    "@alexi/firebase": "jsr:@alexi/firebase@^0.1.0",
+    "@alexi/firebase": "jsr:@alexi/firebase@^0.1.6",
     "@alexi/pwa": "jsr:@alexi/pwa@^0.1.3",
     "@alexi/web": "jsr:@alexi/web@^0.1.2",
     "@deno/emit": "jsr:@deno/emit@^0.45.0",
@@ -17,7 +18,7 @@
     "@std/fs": "jsr:@std/fs@^1.0.5",
     "@std/io": "jsr:@std/io@^0.225.0",
     "@std/path": "jsr:@std/path@^1.0.7",
-    "firebase-admin": "npm:firebase-admin@^13.0.0",
+    "firebase-admin": "npm:firebase-admin@^12.7.0",
     "myapp/": "./src/myapp/",
     "project/": "./project/"
   },
