@@ -5,8 +5,9 @@
     "jsr:@alexi/firebase@~0.1.5": "0.1.5",
     "jsr:@alexi/firebase@~0.1.6": "0.1.6",
     "jsr:@alexi/pwa@~0.1.3": "0.1.3",
-    "jsr:@alexi/web@~0.1.2": "0.1.2",
+    "jsr:@alexi/web@~0.1.2": "0.1.4",
     "jsr:@alexi/web@~0.1.3": "0.1.3",
+    "jsr:@alexi/web@~0.1.4": "0.1.4",
     "jsr:@deno/cache-dir@0.8": "0.8.0",
     "jsr:@deno/emit@0.45": "0.45.0",
     "jsr:@duesabati/esbuild-deno-plugin@^0.0.1": "0.0.1",
@@ -91,6 +92,16 @@
       "dependencies": [
         "jsr:@luca/esbuild-deno-loader",
         "jsr:@std/fs@^1.0.5",
+        "npm:esbuild",
+        "npm:nunjucks"
+      ]
+    },
+    "@alexi/web@0.1.4": {
+      "integrity": "ad4429d59c4d018b472e217962133419bfca4cbe9aaa7b51e8b936310df4a784",
+      "dependencies": [
+        "jsr:@luca/esbuild-deno-loader",
+        "jsr:@std/fs@^1.0.5",
+        "npm:@open-wc/dedupe-mixin",
         "npm:esbuild",
         "npm:nunjucks"
       ]
@@ -2193,6 +2204,7 @@
       "jsr:@alexi/db@~0.1.1",
       "jsr:@alexi/firebase@~0.1.6",
       "jsr:@alexi/pwa@~0.1.3",
+      "jsr:@alexi/web@~0.1.4",
       "jsr:@deno/emit@0.45",
       "jsr:@luca/esbuild-deno-loader@0.11",
       "jsr:@std/assert@1",
@@ -2228,13 +2240,6 @@
           "jsr:@alexi/db@~0.1.1",
           "jsr:@alexi/pwa@~0.1.3",
           "npm:@open-wc/dedupe-mixin@1.4.0"
-        ]
-      },
-      "src/web": {
-        "dependencies": [
-          "jsr:@luca/esbuild-deno-loader@0.11",
-          "npm:esbuild@0.24",
-          "npm:nunjucks@^3.2.4"
         ]
       }
     }
