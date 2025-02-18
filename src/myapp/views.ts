@@ -1,4 +1,4 @@
-import { APIView, TemplateView } from '@alexi/web/views';
+import { TemplateView, View } from '@alexi/web/views';
 import { AssetsMixin } from 'myapp/mixins.ts';
 
 export class MyAppView extends AssetsMixin(TemplateView) {
@@ -55,7 +55,7 @@ export class MyAppView extends AssetsMixin(TemplateView) {
   }
 }
 
-export class AssetsAPIView extends AssetsMixin(APIView) {
+export class AssetsAPIView extends AssetsMixin(View) {
   async get(request: Request) {
     if (this.params.assetId) {
       return this.retrieve({ id: this.params.assetId });

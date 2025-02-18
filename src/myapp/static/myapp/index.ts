@@ -132,33 +132,24 @@ async function main() {
       default: {
         NAME: 'default',
         ENGINE: IndexedDBBackend,
+        VERSION: 1,
+        ON_UPGRADE: (db: any) => {
+          const apps = globalThis.alexi.conf.apps;
+          for (const appName in apps) {
+            for (const modelName in apps[appName].models) {
+              const model = apps[appName].models[modelName];
+
+              if (!db.objectStoreNames.contains(model.meta.dbTable)) {
+                db.createObjectStore(model.meta.dbTable, {
+                  keyPath: 'id',
+                  autoIncrement: true,
+                });
+              }
+            }
+          }
+        },
       },
     },
-  });
-
-  /**
-   * Create the IndexedDB database tables.
-   */
-
-  const apps = globalThis.alexi.conf.apps;
-  const settings = globalThis.alexi.conf.settings;
-  const backend = new settings.DATABASES.default.ENGINE();
-  // deno-lint-ignore no-explicit-any
-  await backend.init(settings.DATABASES.default.NAME, 1, (db: any) => {
-    for (const appName in apps) {
-      console.log(1, apps[appName].models);
-
-      for (const modelName in apps[appName].models) {
-        const model = apps[appName].models[modelName];
-
-        if (!db.objectStoreNames.contains(model.meta.dbTable)) {
-          db.createObjectStore(model.meta.dbTable, {
-            keyPath: 'id',
-            autoIncrement: true,
-          });
-        }
-      }
-    }
   });
 
   /**

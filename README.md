@@ -3,5 +3,5 @@
 ## Runserver
 
 ```bash
-deno -A --env-file=.env.development --watch-hmr manage.ts runserver
+deno -A --unstable-kv --env-file=.env.development manage.ts runserver
 ```
