@@ -1,9 +1,9 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 import { dispatch } from '@alexi/pwa/dispatcher';
 
 export default class Counter extends md.ThemedElementMixin(
-  html.HTMLElement,
+  HTMLProps<Counter>(HTMLElement),
 ) {
   theme = new md.ThemeData({});
   user = {

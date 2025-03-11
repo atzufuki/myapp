@@ -1,11 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 import { dispatch } from '@alexi/pwa/dispatcher';
 
-export default class Assets extends md.ThemedElementMixin(
-  html.HTMLElement,
-) {
-  theme = new md.ThemeData({});
+export default class Assets
+  extends md.ThemedElementMixin(HTMLProps<Assets>(HTMLElement)) {
+  text?: string;
   user = {
     displayName: '',
   };
@@ -106,4 +105,4 @@ export default class Assets extends md.ThemedElementMixin(
   }
 }
 
-Assets.define('myapp-assets');
+Assets.define('my-element');

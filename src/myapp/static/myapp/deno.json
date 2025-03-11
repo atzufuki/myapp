@@ -1,6 +1,7 @@
 {
   "version": "0.1.0",
   "imports": {
+    "@html-props/core": "jsr:@html-props/core@^0.1.1",
     "@open-wc/dedupe-mixin": "npm:@open-wc/dedupe-mixin@1.4.0",
     "@alexi/db": "jsr:@alexi/db@^0.3.0",
     "@alexi/pwa": "jsr:@alexi/pwa@^0.2.0",
