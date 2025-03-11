@@ -17,6 +17,7 @@ export class MaterialApp extends ThemedElementMixin(
         height: '100%',
         width: '100%',
         position: 'absolute',
+        backgroundColor: this.theme.color('background'),
       },
     };
   }
@@ -29,9 +30,5 @@ export class MaterialApp extends ThemedElementMixin(
 
   disconnectedCallback(): void {
     this.scheme.removeEventListener('change', this.binds.update);
-  }
-
-  update(): void {
-    this.style.backgroundColor = this.theme.color('background');
   }
 }

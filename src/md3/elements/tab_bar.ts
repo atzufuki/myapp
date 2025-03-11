@@ -13,6 +13,8 @@ export class Tab extends ThemedElementMixin(
     super.connectedCallback();
 
     this.addEventListener('click', this.handleclick);
+
+    this.update();
   }
 
   disconnectedCallback(): void {
@@ -128,6 +130,8 @@ export class TabBar extends ThemedElementMixin(
 
     const tabs = this.querySelectorAll<Tab>(Tab.getName());
     tabs[this.selectedIndex].activate({ initial: true });
+
+    this.update();
   }
 
   update() {
@@ -166,6 +170,11 @@ export class TabActiveIndicator extends ThemedElementMixin(
         placeContent: 'center',
       },
     };
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.update();
   }
 
   update() {

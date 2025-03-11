@@ -14,13 +14,10 @@ export class TopAppBar extends ThemedElementMixin(
         display: 'block',
         boxSizing: 'border-box',
         userSelect: 'none',
+        backgroundColor: this.theme.color('surface'),
+        color: this.theme.color('onSurface'),
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.theme.color('surface');
-    this.style.color = this.theme.color('onSurface');
   }
 
   render() {

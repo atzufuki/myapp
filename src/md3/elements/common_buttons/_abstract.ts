@@ -45,6 +45,8 @@ export abstract class AbstractButton extends ThemedElementMixin(
   connectedCallback(): void {
     super.connectedCallback();
 
+    this.update();
+
     if (this.ref) {
       this.ref.current = this;
     }

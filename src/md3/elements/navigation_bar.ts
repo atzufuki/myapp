@@ -20,6 +20,8 @@ export class NavigationDestination extends ThemedElementMixin(
     super.connectedCallback();
 
     this.addEventListener('click', this.handleclick);
+
+    this.update();
   }
 
   disconnectedCallback(): void {
@@ -152,6 +154,8 @@ export class NavigationBar extends ThemedElementMixin(
     );
 
     destinations[this.selectedIndex].activate({ initial: true });
+
+    this.update();
   }
 
   update() {
@@ -197,6 +201,11 @@ export class ActiveIndicator extends ThemedElementMixin(
         placeContent: 'center',
       },
     };
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.update();
   }
 
   update() {

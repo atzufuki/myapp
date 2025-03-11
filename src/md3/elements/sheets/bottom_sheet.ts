@@ -14,6 +14,11 @@ export class BottomSheet extends ThemedElementMixin(
   height?: string;
   width?: string;
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.update();
+  }
+
   getDefaultProps(): BottomSheet['props'] {
     return {
       style: {

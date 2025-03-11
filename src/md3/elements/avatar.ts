@@ -23,16 +23,13 @@ export class Avatar extends ThemedElementMixin(
         cursor: 'pointer',
         whiteSpace: 'nowrap',
         flexShrink: '0',
+        backgroundColor: this.theme.color('surfaceVariant'),
+        color: this.theme.color('primary'),
+        borderRadius: this.theme.shape.full,
+        height: this.theme.spToRem(40),
+        width: this.theme.spToRem(40),
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.theme.color('surfaceVariant');
-    this.style.color = this.theme.color('primary');
-    this.style.borderRadius = this.theme.shape.full;
-    this.style.height = this.theme.spToRem(40);
-    this.style.width = this.theme.spToRem(40);
   }
 
   getChars() {

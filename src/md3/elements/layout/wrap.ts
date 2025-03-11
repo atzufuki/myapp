@@ -21,6 +21,11 @@ export class Wrap extends HTMLProps<Wrap>(HTMLElement) {
   crossAxisAlignment?: AxisAlignment;
   spacing?: string;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.update();
+  }
+
   getDefaultProps(): Wrap['props'] {
     return {
       style: {

@@ -28,6 +28,11 @@ export class Container extends HTMLProps<Container>(HTMLElement) {
   alignment?: Alignment;
   constraints?: Constraints;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.update();
+  }
+
   getDefaultProps(): Container['props'] {
     return {
       style: {

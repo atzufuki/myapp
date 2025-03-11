@@ -42,6 +42,8 @@ export class TextField extends ThemedElementMixin(
     this.addEventListener('click', this.handleFocus);
     this.input.addEventListener('focusin', this.update);
     this.input.addEventListener('focusout', this.update);
+
+    this.update();
   }
 
   disconnectedCallback(): void {

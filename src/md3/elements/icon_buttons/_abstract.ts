@@ -24,6 +24,8 @@ export class AbstractIconButton extends ThemedElementMixin(
   connectedCallback(): void {
     super.connectedCallback();
 
+    this.update();
+
     this.addEventListener('focusin', this.onFocus);
     this.addEventListener('focusout', this.onFocus);
 

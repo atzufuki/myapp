@@ -116,18 +116,15 @@ export class NavigationDrawer extends ThemedElementMixin(
         height: '100%',
         userSelect: 'none',
         boxSizing: 'border-box',
+        width: this.theme.spToRem(360),
+        backgroundColor: this.theme.color('surface'),
+        padding: `${this.theme.spToRem(16)} ${
+          this.theme.spToRem(
+            12,
+          )
+        } ${this.theme.spToRem(16)} ${this.theme.spToRem(12)}`,
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.theme.color('surface');
-    this.style.padding = `${this.theme.spToRem(16)} ${
-      this.theme.spToRem(
-        12,
-      )
-    } ${this.theme.spToRem(16)} ${this.theme.spToRem(12)}`;
-    this.style.width = this.theme.spToRem(360);
   }
 
   render() {
@@ -153,12 +150,9 @@ export class NavigationDrawerActiveIndicator extends ThemedElementMixin(
         placeContent: 'center',
         height: '100%',
         width: '100%',
+        color: this.theme.color('onSurfaceVariant'),
       },
     };
-  }
-
-  update() {
-    this.style.color = this.theme.color('onSurfaceVariant');
   }
 
   render() {

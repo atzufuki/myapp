@@ -7,6 +7,11 @@ export class Scrollable extends HTMLProps<Scrollable>(HTMLElement) {
   maxHeight?: string;
   maxWidth?: string;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.update();
+  }
+
   getDefaultProps(): Scrollable['props'] {
     return {
       scrollDirection: 'auto',

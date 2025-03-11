@@ -18,14 +18,14 @@ export class Fab extends ThemedElementMixin(
         display: 'flex',
         placeContent: 'center',
         placeItems: 'center',
-        borderRadius: this.theme.spToRem(20),
-        backgroundColor: this.theme.color('primary'),
-        color: this.theme.color('onPrimary'),
         boxShadow: '0 2px 5px rgb(0 0 0 / 26%)',
         padding: '0',
         border: '0',
         cursor: 'pointer',
         whiteSpace: 'nowrap',
+        borderRadius: this.theme.spToRem(20),
+        backgroundColor: this.theme.color('primary'),
+        color: this.theme.color('onPrimary'),
       },
     };
   }
@@ -58,5 +58,10 @@ export class Fab extends ThemedElementMixin(
         }),
       ],
     });
+  }
+
+  static define(name: string) {
+    customElements.define(name, Fab, { extends: 'button' });
+    return this;
   }
 }

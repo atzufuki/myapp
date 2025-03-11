@@ -23,6 +23,7 @@ async function main() {
     ],
     WATCHFILES_DIRS: [
       './src/myapp/',
+      './src/md3/',
     ],
     WATCHER_USE_POLLING: false,
   });

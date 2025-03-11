@@ -22,12 +22,9 @@ export class Scaffold extends ThemedElementMixin(
         display: 'block',
         height: '100%',
         width: '100%',
+        backgroundColor: this.theme.color('background'),
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.theme.color('background');
   }
 
   render() {

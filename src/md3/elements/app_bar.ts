@@ -18,13 +18,10 @@ export class AppBar extends ThemedElementMixin(
         display: 'block',
         boxSizing: 'border-box',
         userSelect: 'none',
+        backgroundColor: this.props.color ?? this.theme.color('surface'),
+        color: this.props.onColor ?? this.theme.color('onSurface'),
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.color ?? this.theme.color('surface');
-    this.style.color = this.onColor ?? this.theme.color('onSurface');
   }
 
   render() {

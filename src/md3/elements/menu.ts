@@ -24,20 +24,17 @@ export class Menu extends ThemedElementMixin(
         overflow: 'hidden',
         outline: 'none',
         zIndex: '3',
+        minWidth: this.theme.spToRem(280),
+        maxWidth: this.theme.spToRem(280),
+        borderRadius: this.theme.spToRem(4),
+        backgroundColor: this.theme.color('surface'),
+        boxShadow: this.theme.elevation[2].shadow,
       },
     };
   }
 
   disconnectedCallback(): void {
     this.removeEventListener('focusout', this.out);
-  }
-
-  update() {
-    this.style.minWidth = this.theme.spToRem(280);
-    this.style.maxWidth = this.theme.spToRem(280);
-    this.style.borderRadius = this.theme.spToRem(4);
-    this.style.backgroundColor = this.theme.color('surface');
-    this.style.boxShadow = this.theme.elevation[2].shadow;
   }
 
   showMenu() {

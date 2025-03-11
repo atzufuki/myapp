@@ -10,6 +10,7 @@ export abstract class AbstractCard extends ThemedElementMixin(
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.update();
   }
 
   getDefaultProps(): AbstractCard['props'] {

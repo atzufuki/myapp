@@ -25,6 +25,8 @@ export class ListTile extends ThemedElementMixin(
       this.addEventListener('touchstart', this.hover);
       this.addEventListener('touchend', this.hover);
     }
+
+    this.update();
   }
 
   disconnectedCallback(): void {

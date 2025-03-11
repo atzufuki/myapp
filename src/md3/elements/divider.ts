@@ -15,6 +15,11 @@ export class Divider extends ThemedElementMixin(
     return this.querySelector<DividerLine>(DividerLine.getSelectors())!;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.update();
+  }
+
   getDefaultProps(): Divider['props'] {
     return {
       style: {
@@ -58,6 +63,11 @@ export class DividerLine extends ThemedElementMixin(
   thickness?: number;
   color?: string;
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.update();
+  }
+
   getDefaultProps(): DividerLine['props'] {
     return {
       style: {
@@ -66,6 +76,7 @@ export class DividerLine extends ThemedElementMixin(
         pointerEvents: 'none',
         width: '100%',
         height: '100%',
+        backgroundColor: this.theme.color('outlineVariant'),
       },
     };
   }

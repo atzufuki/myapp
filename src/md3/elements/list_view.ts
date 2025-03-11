@@ -15,16 +15,13 @@ export class ListView extends ThemedElementMixin(
   divider?: boolean = false;
   items?: HTMLElement[];
 
-  update = () => {
-    this.style.padding = `${this.theme.spToRem(8)} 0`;
-  };
-
   getDefaultProps(): ListView['props'] {
     return {
       style: {
         listStyle: 'none',
         margin: '0',
         display: 'contents',
+        padding: `${this.theme.spToRem(8)} 0`,
       },
     };
   }

@@ -15,21 +15,14 @@ export class Icon extends ThemedElementMixin(
       className: 'material-symbols-outlined',
       iconName: null,
       style: {
-        color: 'inherit',
         display: 'block',
         boxSizing: 'border-box',
+        color: this.props.color ?? 'inherit',
+        width: this.theme.spToRem(this.size ?? 24),
+        height: this.theme.spToRem(this.size ?? 24),
+        fontSize: this.theme.spToRem(this.size ?? 24),
       },
     };
-  }
-
-  update() {
-    this.style.width = this.theme.spToRem(this.size ?? 24);
-    this.style.height = this.theme.spToRem(this.size ?? 24);
-    this.style.fontSize = this.theme.spToRem(this.size ?? 24);
-
-    if (this.color) {
-      this.style.color = this.color;
-    }
   }
 
   render(): string | Node {

@@ -13,6 +13,11 @@ export class Stack extends HTMLProps<Stack>(HTMLElement) {
     }
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    this.update();
+  }
+
   getDefaultProps(): Stack['props'] {
     return {
       style: {

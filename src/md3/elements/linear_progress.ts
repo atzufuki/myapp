@@ -39,6 +39,8 @@ export class LinearProgress extends ThemedElementMixin(
     if (this.defaultOpen) {
       this.open();
     }
+
+    this.update();
   }
 
   update() {

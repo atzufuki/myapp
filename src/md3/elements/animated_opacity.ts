@@ -10,6 +10,8 @@ export class AnimatedOpacity extends ThemedElementMixin(
   connectedCallback(): void {
     super.connectedCallback();
 
+    this.update();
+
     if (this.onupdate) {
       this.addEventListener('update', this.onupdate);
     }

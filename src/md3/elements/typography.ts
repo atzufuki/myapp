@@ -24,8 +24,8 @@ type Typespace = 'normal' | 'nowrap' | 'pre-wrap' | 'pre-line' | 'ellipsis';
 
 export class Typography
   extends ThemedElementMixin(HTMLProps<Typography>(HTMLElement)) {
-  typescale!: Typescale;
-  text!: string;
+  typescale: Typescale;
+  text: string;
   typeface?: Typeface;
   typespace?: Typespace;
 
@@ -36,6 +36,11 @@ export class Typography
       },
       typescale: 'label-large',
     };
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.update();
   }
 
   update() {
