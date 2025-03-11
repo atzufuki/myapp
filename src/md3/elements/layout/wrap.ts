@@ -1,4 +1,4 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 type AxisSize = 'min' | 'max';
 
@@ -13,14 +13,7 @@ type AxisAlignment =
 
 type Axis = 'vertical' | 'horizontal';
 
-export class Wrap extends html.HTMLElement<{
-  direction: Axis;
-  mainAxisSize?: AxisSize;
-  crossAxisSize?: AxisSize;
-  mainAxisAlignment?: AxisAlignment;
-  crossAxisAlignment?: AxisAlignment;
-  spacing?: string;
-}> {
+export class Wrap extends HTMLProps<Wrap>(HTMLElement) {
   direction?: Axis;
   mainAxisSize?: AxisSize;
   crossAxisSize?: AxisSize;

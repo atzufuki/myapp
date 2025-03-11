@@ -1,13 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Tab extends ThemedElementMixin(
-  html.HTMLElement<{
-    icon?: md.Icon;
-    label?: string;
-  }>,
+  HTMLProps<Tab>(HTMLElement),
 ) {
   icon?: md.Icon;
   label?: string;
@@ -114,11 +111,7 @@ export class Tab extends ThemedElementMixin(
 }
 
 export class TabBar extends ThemedElementMixin(
-  html.HTMLElement<{
-    onTabSelected?: (index: number) => void;
-    selectedIndex?: number;
-    tabs: Tab[];
-  }>,
+  HTMLProps<TabBar>(HTMLElement),
 ) {
   static Tab = Tab;
 
@@ -162,9 +155,7 @@ export class TabBar extends ThemedElementMixin(
 }
 
 export class TabActiveIndicator extends ThemedElementMixin(
-  html.HTMLElement<{
-    icon?: md.Icon;
-  }>,
+  HTMLProps<TabActiveIndicator>(HTMLElement),
 ) {
   icon?: md.Icon;
 

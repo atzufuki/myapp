@@ -1,19 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Dialog extends ThemedElementMixin(
-  html.HTMLElement<{
-    ref?: { current: any };
-    icon?: md.Icon | Node;
-    headline?: string;
-    supportingText?: string;
-    textButton?: md.TextButton;
-    isOpen?: boolean;
-    isHidden?: boolean;
-    content?: Node;
-  }>,
+  HTMLProps<Dialog>(HTMLElement),
 ) {
   ref?: { current: any };
   icon?: md.Icon;

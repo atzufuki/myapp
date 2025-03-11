@@ -1,16 +1,12 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
+
 import * as md from '@alexi/md3';
+import * as html from '../html.ts';
 
 import { ThemedElementMixin } from '../../theme.ts';
 
 export class BottomSheet extends ThemedElementMixin(
-  html.HTMLElement<{
-    isOpen?: boolean;
-    content?: Node;
-    type?: 'standard' | 'modal';
-    height?: string;
-    width?: string;
-  }>,
+  HTMLProps<BottomSheet>(HTMLElement),
 ) {
   type: 'standard' | 'modal' = 'standard';
   isOpen?: boolean;
@@ -175,5 +171,7 @@ export class BottomSheet extends ThemedElementMixin(
     if (!divDefined) {
       customElements.define(div, html.Div, { extends: 'div' });
     }
+
+    return this;
   }
 }

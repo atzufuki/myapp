@@ -1,18 +1,15 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Fab extends ThemedElementMixin(
-  html.Button<{
-    text?: string;
-    size?: 'default' | 'small' | 'large';
-  }>,
+  HTMLProps<Fab & HTMLButtonElement>(HTMLButtonElement),
 ) {
   text?: string;
   size?: 'default' | 'small' | 'large';
 
-  getDefaultProps(): Fab['props'] {
+  getDefaultProps(): this['props'] {
     return {
       type: 'button',
       style: {

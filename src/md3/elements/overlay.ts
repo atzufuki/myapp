@@ -1,8 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 import { ThemedElementMixin } from '../theme.ts';
 
-export class Overlay extends ThemedElementMixin(html.HTMLElement) {
+export class Overlay extends ThemedElementMixin(
+  HTMLProps<Overlay>(HTMLElement),
+) {
   getDefaultProps(): Overlay['props'] {
     return {
       style: {

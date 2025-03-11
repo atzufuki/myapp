@@ -1,6 +1,6 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
-export class Fragment extends html.HTMLElement {
+export class Fragment extends HTMLProps<Fragment>(HTMLElement) {
   getDefaultProps(): Fragment['props'] {
     return {
       style: {

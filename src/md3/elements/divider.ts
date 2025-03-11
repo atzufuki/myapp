@@ -1,15 +1,9 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Divider extends ThemedElementMixin(
-  html.HTMLElement<{
-    height?: number;
-    thickness?: number;
-    color?: string;
-    indent?: number;
-    endIndent?: number;
-  }>,
+  HTMLProps<Divider>(HTMLElement),
 ) {
   height?: number = 1;
   thickness?: number = 1;
@@ -18,7 +12,7 @@ export class Divider extends ThemedElementMixin(
   endIndent?: number;
 
   get dividerLine() {
-    return this.querySelector<DividerLine>(DividerLine.getSelector())!;
+    return this.querySelector<DividerLine>(DividerLine.getSelectors())!;
   }
 
   getDefaultProps(): Divider['props'] {
@@ -59,10 +53,7 @@ export class Divider extends ThemedElementMixin(
 }
 
 export class DividerLine extends ThemedElementMixin(
-  html.HTMLElement<{
-    thickness?: number;
-    color?: string;
-  }>,
+  HTMLProps<DividerLine>(HTMLElement),
 ) {
   thickness?: number;
   color?: string;

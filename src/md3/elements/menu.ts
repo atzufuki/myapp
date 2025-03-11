@@ -1,13 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Menu extends ThemedElementMixin(
-  html.HTMLElement<{
-    x?: number;
-    y?: number;
-  }>,
+  HTMLProps<Menu>(HTMLElement),
 ) {
   x?: number;
   y?: number;

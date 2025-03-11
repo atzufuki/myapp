@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "imports": {
     "@alexi/": "../../src/",
-    "@alexi/html": "../../src/html/mod.ts",
     "@alexi/md3": "./mod.ts",
+    "@html-props/core": "jsr:@html-props/core@^0.1.2",
     "@open-wc/dedupe-mixin": "npm:@open-wc/dedupe-mixin@1.4.0"
   },
   "exports": {

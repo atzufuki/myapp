@@ -1,7 +1,9 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import { ThemedElementMixin } from '../theme.ts';
 
-export class MaterialApp extends ThemedElementMixin(html.HTMLElement) {
+export class MaterialApp extends ThemedElementMixin(
+  HTMLProps<MaterialApp>(HTMLElement),
+) {
   scheme = globalThis.matchMedia('(prefers-color-scheme: dark)');
 
   binds = {

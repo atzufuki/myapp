@@ -1,12 +1,8 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 type Axis = 'horizontal' | 'vertical' | 'both' | 'auto';
 
-export class Scrollable extends html.HTMLElement<{
-  scrollDirection?: Axis;
-  maxHeight?: string;
-  maxWidth?: string;
-}> {
+export class Scrollable extends HTMLProps<Scrollable>(HTMLElement) {
   scrollDirection?: Axis;
   maxHeight?: string;
   maxWidth?: string;

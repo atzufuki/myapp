@@ -1,8 +1,6 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
-export class Expanded extends html.HTMLElement<{
-  flex?: number;
-}> {
+export class Expanded extends HTMLProps<Expanded>(HTMLElement) {
   getDefaultProps(): Expanded['props'] {
     return {
       style: {

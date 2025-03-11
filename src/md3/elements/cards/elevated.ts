@@ -1,13 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../../theme.ts';
 
 export class ElevatedCard extends ThemedElementMixin(
-  html.HTMLElement<{
-    heading?: string;
-    body?: HTMLElement;
-  }>,
+  HTMLProps<ElevatedCard>(HTMLElement),
 ) {
   heading?: string;
   body?: HTMLElement;
@@ -23,8 +20,6 @@ export class ElevatedCard extends ThemedElementMixin(
   }
 
   update(): void {
-    super.update();
-
     this.style.boxShadow = this.theme.elevation[2].shadow;
     this.style.borderRadius = this.theme.shape.medium;
     this.style.padding = this.theme.spToRem(16);
@@ -47,4 +42,3 @@ export class ElevatedCard extends ThemedElementMixin(
     });
   }
 }
-ElevatedCard.define('elevated-card');

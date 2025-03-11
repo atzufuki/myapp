@@ -1,15 +1,9 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class LinearProgress extends ThemedElementMixin(
-  html.HTMLElement<{
-    defaultOpen?: boolean;
-    duration?: number;
-    useDelay?: boolean;
-    trackColor?: string;
-    indicatorColor?: string;
-  }>,
+  HTMLProps<LinearProgress>(HTMLElement),
 ) {
   defaultOpen?: boolean;
   duration!: number;
@@ -19,7 +13,7 @@ export class LinearProgress extends ThemedElementMixin(
   indicatorColor?: string;
 
   get indicator() {
-    return this.querySelector<Indicator>(Indicator.getSelector())!;
+    return this.querySelector<Indicator>(Indicator.getSelectors())!;
   }
 
   get isloading() {
@@ -83,9 +77,7 @@ export class LinearProgress extends ThemedElementMixin(
 }
 
 export class Track extends ThemedElementMixin(
-  html.HTMLElement<{
-    color?: string;
-  }>,
+  HTMLProps<Track>(HTMLElement),
 ) {
   color?: string;
 
@@ -106,12 +98,7 @@ export class Track extends ThemedElementMixin(
 }
 
 export class Indicator extends ThemedElementMixin(
-  html.HTMLElement<{
-    duration?: number;
-    repeat?: boolean;
-    easing?: string;
-    color?: string;
-  }>,
+  HTMLProps<Indicator>(HTMLElement),
 ) {
   duration!: number;
   repeat!: boolean;

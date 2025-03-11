@@ -1,13 +1,11 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
+import * as html from './html.ts';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class NavigationDrawerDestination extends ThemedElementMixin(
-  html.HTMLElement<{
-    icon?: md.Icon;
-    label?: string;
-  }>,
+  HTMLProps<NavigationDrawerDestination>(HTMLElement),
 ) {
   icon?: md.Icon;
   label?: string;
@@ -90,10 +88,7 @@ export class NavigationDrawerDestination extends ThemedElementMixin(
 }
 
 export class NavigationDrawer extends ThemedElementMixin(
-  html.HTMLElement<{
-    selectedIndex?: number;
-    destinations: md.NavigationDrawerDestination[];
-  }>,
+  HTMLProps<NavigationDrawer>(HTMLElement),
 ) {
   static Destination = md.NavigationDrawerDestination;
 
@@ -146,10 +141,7 @@ export class NavigationDrawer extends ThemedElementMixin(
 }
 
 export class NavigationDrawerActiveIndicator extends ThemedElementMixin(
-  html.HTMLElement<{
-    icon?: md.Icon;
-    label?: string;
-  }>,
+  HTMLProps<NavigationDrawerActiveIndicator>(HTMLElement),
 ) {
   icon?: md.Icon;
   label?: string;
@@ -244,5 +236,7 @@ export class NavigationDrawerActiveIndicator extends ThemedElementMixin(
     if (!spanDefined) {
       customElements.define(span, html.Span, { extends: 'span' });
     }
+
+    return this;
   }
 }

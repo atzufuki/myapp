@@ -1,4 +1,3 @@
-import * as html from '@alexi/html';
 import * as md from '@alexi/md3';
 
 import { setup } from '@alexi/pwa/setup';
@@ -9,33 +8,6 @@ import { MyApp } from 'myapp/app.ts';
 import { urlpatterns } from 'myapp/urls.ts';
 
 async function main() {
-  html.Div.define('html-div');
-  html.Heading1.define('html-h1');
-  html.Span.define('html-span');
-  html.Anchor.define('html-a');
-  html.Input.define('html-input');
-  html.Button.define('html-button');
-  html.Label.define('html-label');
-  html.Select.define('html-select');
-  html.Option.define('html-option');
-  html.TextArea.define('html-textarea');
-  html.Form.define('html-form');
-  html.FieldSet.define('html-fieldset');
-  html.Legend.define('html-legend');
-  html.Dialog.define('html-dialog');
-  html.Progress.define('html-progress');
-  html.Meter.define('html-meter');
-  html.Output.define('html-output');
-  html.Canvas.define('html-canvas');
-  html.Image.define('html-image');
-  html.Audio.define('html-audio');
-  html.Video.define('html-video');
-  html.Track.define('html-track');
-  html.Map.define('html-map');
-  html.Area.define('html-area');
-  html.Table.define('html-table');
-  html.TableHead.define('html-thead');
-
   // Cards
 
   md.OutlinedCard.define('md3-outlined-card');

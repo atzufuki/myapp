@@ -1,14 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 import { IconName } from './icon_names.ts';
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Icon extends ThemedElementMixin(
-  html.Span<{
-    iconName: IconName | null;
-    size?: number;
-    color?: string;
-  }>,
+  HTMLProps<Icon>(HTMLElement),
 ) {
   iconName!: IconName | null;
   size?: number;

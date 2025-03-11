@@ -1,4 +1,4 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 type Alignment =
   | 'bottom-center'
@@ -11,9 +11,7 @@ type Alignment =
   | 'top-left'
   | 'top-right';
 
-export class Align extends html.HTMLElement<{
-  alignment: Alignment | null;
-}> {
+export class Align extends HTMLProps<Align>(HTMLElement) {
   getDefaultProps(): Align['props'] {
     return {
       style: {

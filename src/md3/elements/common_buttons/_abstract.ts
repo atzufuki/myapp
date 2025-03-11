@@ -1,18 +1,15 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
+import * as html from '../html.ts';
 
 import { ThemedElementMixin } from '../../theme.ts';
 
 type Elevation = 0 | 1 | 2 | 3 | 4 | 5;
 
 export abstract class AbstractButton extends ThemedElementMixin(
-  html.Button<{
-    ref?: { current: any };
-    text?: string;
-    icon?: md.Icon;
-    href?: string;
-  }>,
+  HTMLProps<AbstractButton & HTMLButtonElement>(HTMLButtonElement),
 ) {
+  disabled = false;
   ref?: { current: any };
   text?: string;
   icon?: md.Icon;
@@ -153,7 +150,7 @@ export abstract class AbstractButton extends ThemedElementMixin(
 
   get progress() {
     return this.querySelector<md.LinearProgress>(
-      md.LinearProgress.getSelector(),
+      md.LinearProgress.getSelectors(),
     )!;
   }
 

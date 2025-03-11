@@ -1,4 +1,4 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 type Alignment =
   | 'bottom-center'
@@ -18,19 +18,7 @@ type Constraints = {
   maxHeight?: string;
 };
 
-export class Container extends html.HTMLElement<{
-  height?: string;
-  width?: string;
-  shape?: string;
-  color?: string;
-  padding?: string;
-  margin?: string;
-  alignment?: Alignment;
-  constraints?: Constraints;
-  // TODO:
-  // decoration
-  // transform
-}> {
+export class Container extends HTMLProps<Container>(HTMLElement) {
   height?: string;
   width?: string;
   shape?: string;

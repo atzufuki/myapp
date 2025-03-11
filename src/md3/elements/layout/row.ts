@@ -1,4 +1,4 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 type AxisSize = 'min' | 'max';
 
@@ -11,13 +11,7 @@ type AxisAlignment =
   | 'stretch'
   | 'center';
 
-export class Row extends html.HTMLElement<{
-  mainAxisSize?: AxisSize;
-  crossAxisSize?: AxisSize;
-  mainAxisAlignment?: AxisAlignment;
-  crossAxisAlignment?: AxisAlignment;
-  spacing?: string;
-}> {
+export class Row extends HTMLProps<Row>(HTMLElement) {
   getDefaultProps(): Row['props'] {
     return {
       style: {

@@ -1,7 +1,6 @@
 {
   "workspace": [
     "./src/files",
-    "./src/html",
     "./src/md3",
     "./src/myapp",
     "./src/myapp/static/myapp"

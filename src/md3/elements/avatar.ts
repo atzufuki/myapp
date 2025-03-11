@@ -1,13 +1,11 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
+import * as html from './html.ts';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Avatar extends ThemedElementMixin(
-  html.Button<{
-    src?: string;
-    displayName?: string;
-  }>,
+  HTMLProps<Avatar & HTMLButtonElement>(HTMLButtonElement),
 ) {
   src?: string;
   displayName?: string;
@@ -85,5 +83,7 @@ export class Avatar extends ThemedElementMixin(
     if (!imgDefined) {
       customElements.define(img, html.Image, { extends: 'img' });
     }
+
+    return this;
   }
 }

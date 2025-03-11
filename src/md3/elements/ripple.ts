@@ -1,11 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 import { ThemedElementMixin } from '../theme.ts';
+import * as html from './html.ts';
 
 export class Ripple extends ThemedElementMixin(
-  html.HTMLElement<{
-    color?: string;
-  }>,
+  HTMLProps<Ripple>(HTMLElement),
 ) {
   color?: string = '#ffffff';
 
@@ -126,5 +125,6 @@ export class Ripple extends ThemedElementMixin(
     if (!divDefined) {
       customElements.define(div, html.Div, { extends: 'div' });
     }
+    return this;
   }
 }

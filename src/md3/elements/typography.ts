@@ -1,4 +1,4 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 import { ThemedElementMixin } from '../theme.ts';
 
@@ -22,20 +22,14 @@ type Typescale =
 type Typeface = 'Roboto' | 'Roboto Flex' | 'Roboto Serif' | 'Noto' | string;
 type Typespace = 'normal' | 'nowrap' | 'pre-wrap' | 'pre-line' | 'ellipsis';
 
-export class Typography extends ThemedElementMixin(
-  html.HTMLElement<{
-    typescale: Typescale;
-    text: string;
-    typeface?: Typeface;
-    typespace?: Typespace;
-  }>,
-) {
+export class Typography
+  extends ThemedElementMixin(HTMLProps<Typography>(HTMLElement)) {
   typescale!: Typescale;
   text!: string;
   typeface?: Typeface;
   typespace?: Typespace;
 
-  getDefaultProps(): Typography['props'] {
+  getDefaultProps(): this['props'] {
     return {
       style: {
         color: 'inherit',

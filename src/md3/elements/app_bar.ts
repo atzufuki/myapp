@@ -1,16 +1,9 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 import { ThemedElementMixin } from '../theme.ts';
 
 export class AppBar extends ThemedElementMixin(
-  html.HTMLElement<{
-    leading?: HTMLElement | string;
-    appBarTitle?: HTMLElement | string;
-    actions?: (HTMLElement | string)[];
-    bottom?: HTMLElement | string;
-    color?: string;
-    onColor?: string;
-  }>,
+  HTMLProps<AppBar>(HTMLElement),
 ) {
   leading?: HTMLElement | string;
   appBarTitle?: HTMLElement | string;
