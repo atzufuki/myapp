@@ -1,11 +1,8 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Navigator extends ThemedElementMixin(
-  html.HTMLElement<{
-    defaultPage?: number;
-    pages?: HTMLElement[];
-  }>,
+  HTMLProps<Navigator>(HTMLElement),
 ) {
   defaultPage?: number;
   pages?: HTMLElement[];

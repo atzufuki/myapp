@@ -1,13 +1,11 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
+import * as html from './html.ts';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Avatar extends ThemedElementMixin(
-  html.Button<{
-    src?: string;
-    displayName?: string;
-  }>,
+  HTMLProps<Avatar & HTMLButtonElement>(HTMLButtonElement),
 ) {
   src?: string;
   displayName?: string;
@@ -25,16 +23,13 @@ export class Avatar extends ThemedElementMixin(
         cursor: 'pointer',
         whiteSpace: 'nowrap',
         flexShrink: '0',
+        backgroundColor: this.theme.color('surfaceVariant'),
+        color: this.theme.color('primary'),
+        borderRadius: this.theme.shape.full,
+        height: this.theme.spToRem(40),
+        width: this.theme.spToRem(40),
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.theme.color('surfaceVariant');
-    this.style.color = this.theme.color('primary');
-    this.style.borderRadius = this.theme.shape.full;
-    this.style.height = this.theme.spToRem(40);
-    this.style.width = this.theme.spToRem(40);
   }
 
   getChars() {
@@ -85,5 +80,7 @@ export class Avatar extends ThemedElementMixin(
     if (!imgDefined) {
       customElements.define(img, html.Image, { extends: 'img' });
     }
+
+    return this;
   }
 }

@@ -1,10 +1,6 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
-export class Stack extends html.HTMLElement<{
-  ref?: (ref: Stack) => Stack;
-  fit?: 'loose' | 'expand';
-  overflow?: 'visible' | 'clip';
-}> {
+export class Stack extends HTMLProps<Stack>(HTMLElement) {
   ref?: (ref: Stack) => Stack;
   fit: 'loose' | 'expand';
   overflow?: 'visible' | 'clip' = 'clip';
@@ -15,6 +11,11 @@ export class Stack extends html.HTMLElement<{
     if (this.ref) {
       this.ref(this);
     }
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.update();
   }
 
   getDefaultProps(): Stack['props'] {

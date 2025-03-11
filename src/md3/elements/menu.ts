@@ -1,20 +1,17 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Menu extends ThemedElementMixin(
-  html.HTMLElement<{
-    x?: number;
-    y?: number;
-  }>,
+  HTMLProps<Menu>(HTMLElement),
 ) {
   x?: number;
   y?: number;
 
   get app() {
     return document.querySelector<md.MaterialApp>(
-      md.MaterialApp.getSelector(),
+      md.MaterialApp.getSelectors(),
     )!;
   }
 
@@ -27,20 +24,17 @@ export class Menu extends ThemedElementMixin(
         overflow: 'hidden',
         outline: 'none',
         zIndex: '3',
+        minWidth: this.theme.spToRem(280),
+        maxWidth: this.theme.spToRem(280),
+        borderRadius: this.theme.spToRem(4),
+        backgroundColor: this.theme.color('surface'),
+        boxShadow: this.theme.elevation[2].shadow,
       },
     };
   }
 
   disconnectedCallback(): void {
     this.removeEventListener('focusout', this.out);
-  }
-
-  update() {
-    this.style.minWidth = this.theme.spToRem(280);
-    this.style.maxWidth = this.theme.spToRem(280);
-    this.style.borderRadius = this.theme.spToRem(4);
-    this.style.backgroundColor = this.theme.color('surface');
-    this.style.boxShadow = this.theme.elevation[2].shadow;
   }
 
   showMenu() {

@@ -1,12 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class TopAppBar extends ThemedElementMixin(
-  html.HTMLElement<{
-    content: HTMLElement[];
-  }>,
+  HTMLProps<TopAppBar>(HTMLElement),
 ) {
   content!: HTMLElement[];
 
@@ -16,13 +14,10 @@ export class TopAppBar extends ThemedElementMixin(
         display: 'block',
         boxSizing: 'border-box',
         userSelect: 'none',
+        backgroundColor: this.theme.color('surface'),
+        color: this.theme.color('onSurface'),
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.theme.color('surface');
-    this.style.color = this.theme.color('onSurface');
   }
 
   render() {

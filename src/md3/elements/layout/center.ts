@@ -1,6 +1,6 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
-export class Center extends html.HTMLElement {
+export class Center extends HTMLProps<Center>(HTMLElement) {
   getDefaultProps(): Center['props'] {
     return {
       style: {

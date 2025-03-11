@@ -1,4 +1,4 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../../theme.ts';
@@ -6,10 +6,10 @@ import { ThemedElementMixin } from '../../theme.ts';
 type Elevation = 0 | 1 | 2 | 3 | 4 | 5;
 
 export class AbstractIconButton extends ThemedElementMixin(
-  html.Button<{
-    icon: md.Icon;
-  }>,
+  HTMLProps<AbstractIconButton & HTMLButtonElement>(HTMLButtonElement),
 ) {
+  disabled = false;
+
   icon?: md.Icon;
 
   stateLayer = new md.Overlay({});
@@ -23,6 +23,8 @@ export class AbstractIconButton extends ThemedElementMixin(
 
   connectedCallback(): void {
     super.connectedCallback();
+
+    this.update();
 
     this.addEventListener('focusin', this.onFocus);
     this.addEventListener('focusout', this.onFocus);

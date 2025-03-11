@@ -1,4 +1,4 @@
-import * as html from '@alexi/html';
+import * as html from '../html.ts';
 
 import { AbstractButton } from './_abstract.ts';
 
@@ -59,5 +59,7 @@ export class ElevatedButton extends AbstractButton {
     if (!aDefined) {
       customElements.define(a, html.Anchor, { extends: 'a' });
     }
+
+    return this;
   }
 }

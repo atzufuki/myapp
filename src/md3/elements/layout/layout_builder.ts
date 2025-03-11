@@ -1,15 +1,11 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 interface Size {
   height: number;
   width: number;
 }
 
-export class LayoutBuilder extends html.HTMLElement<{
-  builder: (size: Size) => HTMLElement | null;
-  targetElement?: HTMLElement;
-  watchMedia?: boolean;
-}> {
+export class LayoutBuilder extends HTMLProps<LayoutBuilder>(HTMLElement) {
   builder!: (size: Size) => HTMLElement;
   targetElement?: HTMLElement;
   watchMedia: boolean = false;

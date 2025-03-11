@@ -1,13 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Tab extends ThemedElementMixin(
-  html.HTMLElement<{
-    icon?: md.Icon;
-    label?: string;
-  }>,
+  HTMLProps<Tab>(HTMLElement),
 ) {
   icon?: md.Icon;
   label?: string;
@@ -16,6 +13,8 @@ export class Tab extends ThemedElementMixin(
     super.connectedCallback();
 
     this.addEventListener('click', this.handleclick);
+
+    this.update();
   }
 
   disconnectedCallback(): void {
@@ -114,11 +113,7 @@ export class Tab extends ThemedElementMixin(
 }
 
 export class TabBar extends ThemedElementMixin(
-  html.HTMLElement<{
-    onTabSelected?: (index: number) => void;
-    selectedIndex?: number;
-    tabs: Tab[];
-  }>,
+  HTMLProps<TabBar>(HTMLElement),
 ) {
   static Tab = Tab;
 
@@ -135,6 +130,8 @@ export class TabBar extends ThemedElementMixin(
 
     const tabs = this.querySelectorAll<Tab>(Tab.getName());
     tabs[this.selectedIndex].activate({ initial: true });
+
+    this.update();
   }
 
   update() {
@@ -162,9 +159,7 @@ export class TabBar extends ThemedElementMixin(
 }
 
 export class TabActiveIndicator extends ThemedElementMixin(
-  html.HTMLElement<{
-    icon?: md.Icon;
-  }>,
+  HTMLProps<TabActiveIndicator>(HTMLElement),
 ) {
   icon?: md.Icon;
 
@@ -177,6 +172,11 @@ export class TabActiveIndicator extends ThemedElementMixin(
     };
   }
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.update();
+  }
+
   update() {
     const style: Partial<CSSStyleDeclaration> = {
       color: this.theme.color('onSurface'),
@@ -185,7 +185,7 @@ export class TabActiveIndicator extends ThemedElementMixin(
     };
     Object.assign(this.style, style);
 
-    const line = this.querySelector<md.Center>(md.Center.getSelector())!;
+    const line = this.querySelector<md.Center>(md.Center.getSelectors())!;
     line.style.backgroundColor = this.theme.color('primary');
   }
 

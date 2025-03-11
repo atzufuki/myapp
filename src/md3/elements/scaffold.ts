@@ -1,21 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
-import { ThemeData, ThemedElementMixin } from '../theme.ts';
+import { ThemedElementMixin } from '../theme.ts';
 
 export class Scaffold extends ThemedElementMixin(
-  html.HTMLElement<{
-    theme?: ThemeData;
-    appBar?: HTMLElement;
-    progress?: HTMLElement;
-    tabBar?: HTMLElement;
-    body?: HTMLElement;
-    drawer?: HTMLElement;
-    floatingActionButton?: HTMLElement;
-    bottomNavigationBar?: HTMLElement;
-    bottomSheet?: HTMLElement;
-    useScroll?: boolean;
-  }>,
+  HTMLProps<Scaffold>(HTMLElement),
 ) {
   appBar?: HTMLElement;
   progress?: HTMLElement;
@@ -33,12 +22,9 @@ export class Scaffold extends ThemedElementMixin(
         display: 'block',
         height: '100%',
         width: '100%',
+        backgroundColor: this.theme.color('background'),
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.theme.color('background');
   }
 
   render() {

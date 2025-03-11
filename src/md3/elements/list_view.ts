@@ -1,4 +1,4 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
@@ -6,14 +6,7 @@ import { ThemedElementMixin } from '../theme.ts';
 type Axis = 'vertical' | 'horizontal' | 'both' | 'auto';
 
 export class ListView extends ThemedElementMixin(
-  html.HTMLElement<{
-    scrollDirection?: Axis;
-    maxHeight?: string;
-    maxWidth?: string;
-    reverse?: boolean;
-    divider?: boolean;
-    items?: HTMLElement[];
-  }>,
+  HTMLProps<ListView>(HTMLElement),
 ) {
   scrollDirection?: Axis;
   maxHeight?: string;
@@ -22,16 +15,13 @@ export class ListView extends ThemedElementMixin(
   divider?: boolean = false;
   items?: HTMLElement[];
 
-  update = () => {
-    this.style.padding = `${this.theme.spToRem(8)} 0`;
-  };
-
   getDefaultProps(): ListView['props'] {
     return {
       style: {
         listStyle: 'none',
         margin: '0',
         display: 'contents',
+        padding: `${this.theme.spToRem(8)} 0`,
       },
     };
   }

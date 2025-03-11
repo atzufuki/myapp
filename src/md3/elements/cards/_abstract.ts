@@ -1,18 +1,16 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import { ThemedElementMixin } from '@alexi/md3/theme.ts';
 import { Column } from '@alexi/md3/elements/layout/column.ts';
 
 export abstract class AbstractCard extends ThemedElementMixin(
-  html.HTMLElement<{
-    heading?: Node;
-    content?: (Node | string)[];
-  }>,
+  HTMLProps<AbstractCard>(HTMLElement),
 ) {
   heading?: Node;
   content?: (Node | string)[];
 
   connectedCallback(): void {
     super.connectedCallback();
+    this.update();
   }
 
   getDefaultProps(): AbstractCard['props'] {

@@ -1,20 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class ListTile extends ThemedElementMixin(
-  html.HTMLElement<{
-    leading?: string | Node;
-    trailing?: string | Node;
-    maintitle?: string | Node;
-    subtitle?: string | Node;
-    isThreeLine?: boolean;
-    isClickable?: boolean;
-    isSelected?: boolean;
-    background?: string;
-    indentation?: number;
-  }>,
+  HTMLProps<ListTile>(HTMLElement),
 ) {
   leading?: string | Node;
   trailing?: string | Node;
@@ -35,6 +25,8 @@ export class ListTile extends ThemedElementMixin(
       this.addEventListener('touchstart', this.hover);
       this.addEventListener('touchend', this.hover);
     }
+
+    this.update();
   }
 
   disconnectedCallback(): void {

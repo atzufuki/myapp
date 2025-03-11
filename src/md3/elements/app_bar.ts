@@ -1,16 +1,9 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import * as md from '@alexi/md3';
 import { ThemedElementMixin } from '../theme.ts';
 
 export class AppBar extends ThemedElementMixin(
-  html.HTMLElement<{
-    leading?: HTMLElement | string;
-    appBarTitle?: HTMLElement | string;
-    actions?: (HTMLElement | string)[];
-    bottom?: HTMLElement | string;
-    color?: string;
-    onColor?: string;
-  }>,
+  HTMLProps<AppBar>(HTMLElement),
 ) {
   leading?: HTMLElement | string;
   appBarTitle?: HTMLElement | string;
@@ -25,13 +18,10 @@ export class AppBar extends ThemedElementMixin(
         display: 'block',
         boxSizing: 'border-box',
         userSelect: 'none',
+        backgroundColor: this.props.color ?? this.theme.color('surface'),
+        color: this.props.onColor ?? this.theme.color('onSurface'),
       },
     };
-  }
-
-  update() {
-    this.style.backgroundColor = this.color ?? this.theme.color('surface');
-    this.style.color = this.onColor ?? this.theme.color('onSurface');
   }
 
   render() {

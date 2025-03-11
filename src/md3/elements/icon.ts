@@ -1,14 +1,10 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 
 import { IconName } from './icon_names.ts';
 import { ThemedElementMixin } from '../theme.ts';
 
 export class Icon extends ThemedElementMixin(
-  html.Span<{
-    iconName: IconName | null;
-    size?: number;
-    color?: string;
-  }>,
+  HTMLProps<Icon>(HTMLElement),
 ) {
   iconName!: IconName | null;
   size?: number;
@@ -19,21 +15,14 @@ export class Icon extends ThemedElementMixin(
       className: 'material-symbols-outlined',
       iconName: null,
       style: {
-        color: 'inherit',
         display: 'block',
         boxSizing: 'border-box',
+        color: this.props.color ?? 'inherit',
+        width: this.theme.spToRem(this.size ?? 24),
+        height: this.theme.spToRem(this.size ?? 24),
+        fontSize: this.theme.spToRem(this.size ?? 24),
       },
     };
-  }
-
-  update() {
-    this.style.width = this.theme.spToRem(this.size ?? 24);
-    this.style.height = this.theme.spToRem(this.size ?? 24);
-    this.style.fontSize = this.theme.spToRem(this.size ?? 24);
-
-    if (this.color) {
-      this.style.color = this.color;
-    }
   }
 
   render(): string | Node {

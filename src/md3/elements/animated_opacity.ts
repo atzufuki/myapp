@@ -1,17 +1,16 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import { ThemedElementMixin } from '../theme.ts';
 
 export class AnimatedOpacity extends ThemedElementMixin(
-  html.HTMLElement<{
-    opacity: string;
-    onupdate?: () => void;
-  }>,
+  HTMLProps<AnimatedOpacity>(HTMLElement),
 ) {
   opacity?: string;
   onupdate?: () => void;
 
   connectedCallback(): void {
     super.connectedCallback();
+
+    this.update();
 
     if (this.onupdate) {
       this.addEventListener('update', this.onupdate);

@@ -1,7 +1,9 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
 import { ThemedElementMixin } from '../theme.ts';
 
-export class MaterialApp extends ThemedElementMixin(html.HTMLElement) {
+export class MaterialApp extends ThemedElementMixin(
+  HTMLProps<MaterialApp>(HTMLElement),
+) {
   scheme = globalThis.matchMedia('(prefers-color-scheme: dark)');
 
   binds = {
@@ -15,6 +17,7 @@ export class MaterialApp extends ThemedElementMixin(html.HTMLElement) {
         height: '100%',
         width: '100%',
         position: 'absolute',
+        backgroundColor: this.theme.color('background'),
       },
     };
   }
@@ -27,9 +30,5 @@ export class MaterialApp extends ThemedElementMixin(html.HTMLElement) {
 
   disconnectedCallback(): void {
     this.scheme.removeEventListener('change', this.binds.update);
-  }
-
-  update(): void {
-    this.style.backgroundColor = this.theme.color('background');
   }
 }

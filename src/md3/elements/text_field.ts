@@ -1,16 +1,12 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
+import * as html from './html.ts';
+
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class TextField extends ThemedElementMixin(
-  html.HTMLElement<{
-    labelText: string;
-    leadingIcon?: md.Icon;
-    trailingIcon?: md.Icon;
-    supportingText?: string;
-    inputProps?: any;
-  }>,
+  HTMLProps<TextField>(HTMLElement),
 ) {
   labelText!: string;
   leadingIcon?: md.Icon;
@@ -46,6 +42,8 @@ export class TextField extends ThemedElementMixin(
     this.addEventListener('click', this.handleFocus);
     this.input.addEventListener('focusin', this.update);
     this.input.addEventListener('focusout', this.update);
+
+    this.update();
   }
 
   disconnectedCallback(): void {
@@ -198,5 +196,7 @@ export class TextField extends ThemedElementMixin(
     if (!inputDefined) {
       customElements.define(input, html.Input, { extends: 'input' });
     }
+
+    return this;
   }
 }

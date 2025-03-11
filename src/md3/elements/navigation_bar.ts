@@ -1,13 +1,11 @@
-import * as html from '@alexi/html';
+import HTMLProps from '@html-props/core';
+import * as html from './html.ts';
 import * as md from '@alexi/md3';
 
 import { ThemedElementMixin } from '../theme.ts';
 
 export class NavigationDestination extends ThemedElementMixin(
-  html.HTMLElement<{
-    icon?: md.Icon;
-    label?: string;
-  }>,
+  HTMLProps<NavigationDestination>(HTMLElement),
 ) {
   icon?: md.Icon;
   label?: string;
@@ -22,6 +20,8 @@ export class NavigationDestination extends ThemedElementMixin(
     super.connectedCallback();
 
     this.addEventListener('click', this.handleclick);
+
+    this.update();
   }
 
   disconnectedCallback(): void {
@@ -128,11 +128,7 @@ export class NavigationDestination extends ThemedElementMixin(
 }
 
 export class NavigationBar extends ThemedElementMixin(
-  html.HTMLElement<{
-    onDestinationSelected?: (index: number) => void;
-    selectedIndex?: number;
-    destinations: NavigationDestination[];
-  }>,
+  HTMLProps<NavigationBar>(HTMLElement),
 ) {
   static Destination = NavigationDestination;
 
@@ -158,6 +154,8 @@ export class NavigationBar extends ThemedElementMixin(
     );
 
     destinations[this.selectedIndex].activate({ initial: true });
+
+    this.update();
   }
 
   update() {
@@ -192,9 +190,7 @@ export class NavigationBar extends ThemedElementMixin(
 }
 
 export class ActiveIndicator extends ThemedElementMixin(
-  html.HTMLElement<{
-    icon?: md.Icon;
-  }>,
+  HTMLProps<ActiveIndicator>(HTMLElement),
 ) {
   icon?: md.Icon;
 
@@ -205,6 +201,11 @@ export class ActiveIndicator extends ThemedElementMixin(
         placeContent: 'center',
       },
     };
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.update();
   }
 
   update() {
@@ -272,5 +273,7 @@ export class ActiveIndicator extends ThemedElementMixin(
     if (!spanDefined) {
       customElements.define(span, html.Span, { extends: 'span' });
     }
+
+    return this;
   }
 }
