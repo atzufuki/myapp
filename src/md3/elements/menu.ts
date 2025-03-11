@@ -11,7 +11,7 @@ export class Menu extends ThemedElementMixin(
 
   get app() {
     return document.querySelector<md.MaterialApp>(
-      md.MaterialApp.getSelector(),
+      md.MaterialApp.getSelectors(),
     )!;
   }
 

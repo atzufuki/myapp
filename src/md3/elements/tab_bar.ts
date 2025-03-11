@@ -176,7 +176,7 @@ export class TabActiveIndicator extends ThemedElementMixin(
     };
     Object.assign(this.style, style);
 
-    const line = this.querySelector<md.Center>(md.Center.getSelector())!;
+    const line = this.querySelector<md.Center>(md.Center.getSelectors())!;
     line.style.backgroundColor = this.theme.color('primary');
   }
 

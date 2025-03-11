@@ -17,7 +17,7 @@ export class Dialog extends ThemedElementMixin(
 
   get opacity() {
     return this.querySelector<md.AnimatedOpacity>(
-      md.AnimatedOpacity.getSelector(),
+      md.AnimatedOpacity.getSelectors(),
     )!;
   }
 
